@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefings desk KomodoCap</title>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE work: le classeur des feuilles du matin
+   IDEA un registre daté, la dernière édition posée sur le dessus
+   PICTURE la carte du dernier briefing, grande, puis le calendrier des éditions
+   COLOUR blanc, encre #10131a, bleu de Prusse #0b4f8a
+   TYPE Literata + Inter
+   LAYOUT une colonne : dernière édition, puis mois par mois */
+:root{color-scheme:light dark;--bg:light-dark(#fff,#0f1217);--ink:light-dark(#10131a,#e8eaef);--mute:light-dark(#5a6070,#9aa1b0);--rule:light-dark(#e3e5ea,#262b35);--panel:light-dark(#f6f7f9,#161a21);--imp:light-dark(#0b4f8a,#6fa8e6)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:clamp(24px,4vw,56px) max(4vw,16px)}
+h1,h2{font-family:Literata,Georgia,serif;font-weight:650;letter-spacing:-.02em;line-height:1.08;margin:0}
+h1{font-size:clamp(30px,4.4vw,44px);border-bottom:2px solid var(--ink);padding-bottom:14px}
+h2{font-size:22px;margin:32px 0 10px}
+.sub{color:var(--mute);margin:10px 0 0}
+.last{display:block;margin-top:24px;background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:clamp(18px,3vw,28px);color:var(--ink);text-decoration:none}
+.last:hover,.last:focus-visible{border-color:var(--imp);outline:none}
+.last .d{color:var(--imp);font-weight:600;font-size:14px}
+.last .t{font:650 clamp(22px,3vw,30px)/1.15 Literata,Georgia,serif;margin:6px 0 10px}
+.last .go{font-weight:600;color:var(--imp)}
+.grid{display:flex;flex-wrap:wrap;gap:8px}
+.grid a{display:inline-flex;flex-direction:column;justify-content:center;min-height:44px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;color:var(--ink);text-decoration:none;font-size:14px;white-space:nowrap}
+.grid a:hover,.grid a:focus-visible{border-color:var(--imp);outline:none}
+.empty{color:var(--mute)}
+footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:40px;padding-top:12px}
+</style>
+</head>
+<body>
+<main>
+ <h1>Briefings desk KomodoCap</h1>
+ <p class="sub">Briefing matinal avant l'ouverture européenne de 7h30 : banques centrales, chiffres, news et commentaires de banques, avec sources.</p>
+ <div id="last"></div>
+ <div id="months"><p class="empty">Chargement des éditions…</p></div>
+ <footer>Une édition par jour ouvré, publiée vers 7h00 (heure de Paris). Synthèse de sources publiques citées dans chaque page ; ne constitue pas un conseil en investissement.</footer>
+</main>
+<script>
+{
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const file=f=>/^[\w.-]+\.html$/.test(f)?f:'#';
+const MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{
+ E.sort((a,b)=>b.d.localeCompare(a.d));
+ if(!E.length){document.getElementById('months').innerHTML='<p class="empty">Aucune édition pour le moment.</p>';return}
+ const L=E[0];
+ document.getElementById('last').innerHTML=`<a class="last" href="${file(L.f)}"><div class="d">Dernière édition · ${esc(L.l)}</div><div class="t">${esc(L.t)}</div><span class="go">Lire le briefing →</span></a>`;
+ const g={};E.forEach(e=>{const k=e.d.slice(0,7);(g[k]=g[k]||[]).push(e)});
+ document.getElementById('months').innerHTML=Object.keys(g).sort().reverse().map(k=>{const[y,m]=k.split('-');return `<h2>${MOIS[+m-1]} ${y}</h2><div class="grid">${g[k].map(e=>`<a href="${file(e.f)}" title="${esc(e.t)}">${esc(e.l)}</a>`).join('')}</div>`}).join('');
+}).catch(()=>{document.getElementById('months').innerHTML='<p class="empty">Impossible de charger la liste des éditions.</p>'});
+}
+</script>
+</body>
+</html>
