@@ -27,6 +27,17 @@ h2{font-size:22px;margin:32px 0 10px}
 .last .d{color:var(--imp);font-weight:600;font-size:14px}
 .last .t{font:650 clamp(22px,3vw,30px)/1.15 Literata,Georgia,serif;margin:6px 0 10px}
 .last .go{font-weight:600;color:var(--imp)}
+.brief{margin-top:24px;background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:clamp(18px,3vw,30px)}
+.brief .d{color:var(--imp);font-weight:600;font-size:14px}
+.brief h2{margin:6px 0 0;font-size:clamp(22px,3vw,30px)}
+.brief ol{margin:16px 0 0;padding-left:1.3em}
+.brief li{margin:0 0 9px}
+.brief li::marker{font-weight:700;color:var(--imp)}
+.lect{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:10px;margin-top:16px}
+.lect div{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px}
+.lect b{display:block;font-size:15px}
+.vig{margin-top:14px;font-size:14px;border-top:1px solid var(--rule);padding-top:12px}
+.more{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;padding:0 16px;border-radius:8px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none}
 .grid{display:flex;flex-wrap:wrap;gap:8px}
 .grid a{display:inline-flex;flex-direction:column;justify-content:center;min-height:44px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;color:var(--ink);text-decoration:none;font-size:14px;white-space:nowrap}
 .grid a:hover,.grid a:focus-visible{border-color:var(--imp);outline:none}
@@ -51,7 +62,13 @@ fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{
  E.sort((a,b)=>b.d.localeCompare(a.d));
  if(!E.length){document.getElementById('months').innerHTML='<p class="empty">Aucune édition pour le moment.</p>';return}
  const L=E[0];
- document.getElementById('last').innerHTML=`<a class="last" href="${file(L.f)}"><div class="d">Dernière édition · ${esc(L.l)}</div><div class="t">${esc(L.t)}</div><span class="go">Lire le briefing →</span></a>`;
+ const box=document.getElementById('last');
+ box.innerHTML=`<a class="last" href="${file(L.f)}"><div class="d">Dernière édition · ${esc(L.l)}</div><div class="t">${esc(L.t)}</div><span class="go">Lire le briefing →</span></a>`;
+ fetch(file(L.f),{cache:'no-store'}).then(r=>r.text()).then(t=>{
+  const m=t.match(/<script type="application\/json" id="data">([\s\S]*?)<\/script>/);if(!m)return;
+  const D=JSON.parse(m[1]),b=D.briefing;
+  box.innerHTML=`<section class="brief"><div class="d">Briefing du matin · ${esc(D.date)}</div><h2>${esc(b.titre)}</h2><ol>${b.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ol><div class="lect">${b.lecture.map(l=>`<div><b>${esc(l.a)} · ${esc(l.b)}</b>${esc(l.t)}</div>`).join('')}</div><div class="vig"><b>Points de vigilance :</b> ${esc(b.vigilance)}</div><a class="more" href="${file(L.f)}">Détail, banques centrales, agenda et sources →</a></section>`;
+ }).catch(()=>{});
  const g={};E.forEach(e=>{const k=e.d.slice(0,7);(g[k]=g[k]||[]).push(e)});
  document.getElementById('months').innerHTML=Object.keys(g).sort().reverse().map(k=>{const[y,m]=k.split('-');return `<h2>${MOIS[+m-1]} ${y}</h2><div class="grid">${g[k].map(e=>`<a href="${file(e.f)}" title="${esc(e.t)}">${esc(e.l)}</a>`).join('')}</div>`}).join('');
 }).catch(()=>{document.getElementById('months').innerHTML='<p class="empty">Impossible de charger la liste des éditions.</p>'});
