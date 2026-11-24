@@ -47,7 +47,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
 </style>
 </head>
 <body>
-<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a href="2026-11-24.html">Briefing du jour<span>Banques centrales, macro, news et sources</span></a></nav></div></div>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a></nav></div></div>
 <main>
  <h1>Briefing matinal du desk</h1>
  <p class="sub">Briefing matinal avant l'ouverture européenne de 7h30: banques centrales, chiffres, news et commentaires de banques, avec sources.</p>
@@ -71,5 +71,6 @@ fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{
 }
 </script>
 <script>{const b=document.getElementById('menuBtn'),p=document.getElementById('menuPanel');b.addEventListener('click',e=>{e.stopPropagation();const o=p.hidden;p.hidden=!o;b.setAttribute('aria-expanded',o)});document.addEventListener('click',e=>{if(!p.hidden&&!p.contains(e.target)){p.hidden=true;b.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){p.hidden=true;b.setAttribute('aria-expanded','false')}})}</script>
+<script>{fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{E.sort((a,b)=>b.d.localeCompare(a.d));const f=E[0]&&E[0].f;if(f&&/^[\w.-]+\.html$/.test(f))document.getElementById('mToday').href=f}).catch(()=>{})}</script>
 </body>
 </html>
