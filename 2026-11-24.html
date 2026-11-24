@@ -102,7 +102,8 @@ h2{font-size:clamp(22px,2.4vw,28px)}
 .it p{margin:0;font-size:15px}
 .as{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .as span{font-size:13px;font-weight:600;border:1px solid var(--rule);border-radius:4px;padding:1px 7px;white-space:nowrap}
-.src{margin-top:10px;font-size:13px;color:var(--mute)}
+.src{margin-top:10px;font-size:13px;color:var(--mute);overflow-wrap:anywhere}
+.note{overflow-wrap:anywhere}
 .src a{margin-right:10px}
 .empty{color:var(--mute);font-size:15px;padding:10px 0}
 table{border-collapse:collapse;width:100%;margin-top:12px;font-size:15px}
@@ -195,6 +196,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "Macro: Ifo à 90,6 (90,5 attendu), plus haut depuis 2023, mais l'industrie recule. L'écart se creuse entre une Allemagne solide et une France proche de la récession technique.",
    "Pétrole: WTI à 80 $ (−3,9 % hier) sur la médiation du Qatar, mais trois tankers ont explosé sur des mines à Ormuz et Washington se dit prêt à frapper l'Iran « à tout moment »: risque de pic à tout moment.",
    "Valeurs: Sanofi −2,1 % (rachat d'Insmed pour 41 Md$) pèse sur l'Euro Stoxx 50; Aixtron −5,8 % (UBS à Vendre).",
+   "Chine: la PBoC freine toujours le yuan (fixing 6,7111, très en deçà de l'estimation), Hang Seng −0,7 %, Shanghai +0,3 %; Washington blackliste une filiale d'Alibaba, trêve commerciale renvoyée au G20 de décembre.",
    "Agenda: confiance des consommateurs US à 16h00, BCE Vujcic, BoE Greene. Demain, gros paquet US (PCE, PIB T3, biens durables, inscriptions au chômage) avant Thanksgiving."
   ],
   "lecture": [
@@ -254,9 +256,21 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
   },
   {
    "n": "Hang Seng",
-   "v": "—",
-   "c": "−0,9 %",
+   "v": "22 220",
+   "c": "−0,73 %",
    "d": "dn"
+  },
+  {
+   "n": "Shanghai Comp.",
+   "v": "3 548",
+   "c": "+0,27 %",
+   "d": "up"
+  },
+  {
+   "n": "USD/CNY fixing",
+   "v": "6,7111",
+   "c": "vs 6,6757 att.",
+   "d": "fl"
   },
   {
    "n": "EUR/USD",
@@ -352,6 +366,10 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
   {
    "t": "CNBC – Treasuries",
    "u": "https://www.cnbc.com/amp/2026/11/23/treasury-yields-bonds-fed.html"
+  },
+  {
+   "t": "investingLive – fixing PBoC",
+   "u": "https://investinglive.com/central-banks/pboc-sets-usd-cny-central-rate-at-6-7111-vs-estimate-at-6-6757/"
   }
  ],
  "sections": [
@@ -362,6 +380,10 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
   {
    "id": "bc-us",
    "t": "Banques centrales · États-Unis"
+  },
+  {
+   "id": "bc-cn",
+   "t": "Banques centrales · Chine"
   },
   {
    "id": "bc-rdm",
@@ -581,6 +603,37 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    ],
    "z": [
     "us"
+   ]
+  },
+  {
+   "cat": "bc-cn",
+   "imp": 2,
+   "eff": "neu",
+   "z": [
+    "cn"
+   ],
+   "who": "PBoC · fixing du yuan",
+   "t": "La PBoC freine toujours le yuan: fixing à 6,7111, bien plus faible que l'estimation de 6,6757",
+   "p": "Fixing quasi inchangé par rapport à la veille (6,7120) alors que le modèle Reuters attendait un yuan nettement plus fort: Pékin continue de ralentir l'appréciation, après avoir relevé début novembre le ratio de réserves en devises de 4 % à 6 %. Injection de liquidités par reverse repo à 1 jour.",
+   "as": [
+    [
+     "CNY",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – fixing",
+     "https://investinglive.com/central-banks/pboc-sets-usd-cny-central-rate-at-6-7111-vs-estimate-at-6-6757/"
+    ],
+    [
+     "Newsquawk – estimation",
+     "https://www.newsquawk.com/headlines/pboc-is-expected-to-set-yuan-midpoint-at-66757-prev-67120"
+    ],
+    [
+     "investingLive – réserves en devises",
+     "https://investinglive.com/forex/china-s-yuan-slides-to-two-week-low-as-pboc-moves-to-slow-its-rally/"
+    ]
    ]
   },
   {
@@ -821,6 +874,37 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    ]
   },
   {
+   "cat": "macro",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "cn"
+   ],
+   "who": "Chine · rappel conjoncture",
+   "t": "Activité chinoise en net ralentissement en octobre, stimulus sans effet visible",
+   "p": "Consommation et production industrielle sous les attentes en octobre; l'investissement en capital fixe recule de 8,1 % sur dix mois. Objectif de croissance 2026 de 4,5 à 5 %, PIB du T3 à 4,5 %. Prochain repère: profits industriels d'octobre.",
+   "as": [
+    [
+     "Cuivre",
+     "dn"
+    ],
+    [
+     "Hang Seng",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "The Edge (Bloomberg)",
+     "https://theedgemalaysia.com/node/825867"
+    ],
+    [
+     "Swarajya",
+     "https://swarajyamag.com/news-brief/october-data-reveals-chinas-economic-momentum-weakening-across-retail-industrial-output-and-investment"
+    ]
+   ]
+  },
+  {
    "cat": "news",
    "imp": 3,
    "eff": "pos",
@@ -943,7 +1027,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "eff": "neg",
    "who": "États-Unis · contrôles à l'export",
    "t": "Washington blackliste une filiale d'Alibaba, le Congrès veut enquêter sur Nvidia",
-   "p": "Apex Enterprise Solutions (Alibaba Singapour) et Megaspeed ajoutés à la liste noire; Alibaba conteste. La Maison Blanche exige de Nvidia le respect des contrôles et Hakeem Jeffries annonce une enquête du Congrès.",
+   "p": "Apex Enterprise Solutions (filiale singapourienne d'Alibaba), Megaspeed et cinq de ses affiliés en Asie du Sud-Est entrent sur l'Entity List, avec présomption de refus des licences d'export. Alibaba juge l'inscription « erronée » et promet une action en justice; Apex avait versé environ 4,2 Md$ d'avance pour louer de la capacité de calcul. Pékin dément les accusations d'espionnage. La Maison Blanche exige de Nvidia le respect des contrôles et Hakeem Jeffries annonce une enquête du Congrès.",
    "as": [
     [
      "Tech",
@@ -956,6 +1040,18 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    ],
    "s": [
     [
+     "Reuters via Investing.com",
+     "https://www.investing.com/news/stock-market-news/factboxwhat-we-know-about-megaspeed-the-nvidia-customer-blacklisted-by-us-5047829"
+    ],
+    [
+     "IBTimes",
+     "https://ibtimes.com/alibaba-singapore-subsidiary-us-trade-blacklist-3810123"
+    ],
+    [
+     "Techzine",
+     "https://www.techzine.eu/news/privacy-compliance/146021/u-s-adds-megaspeed-and-alibaba-subsidiary-to-blacklist/"
+    ],
+    [
      "Newsquawk",
      "https://www.newsquawk.com/headlines/newsquawk-daily-european-opening-news---24th-november-2026"
     ],
@@ -966,7 +1062,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    ],
    "z": [
     "us",
-    "rdm"
+    "cn"
    ]
   },
   {
@@ -974,16 +1070,16 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "imp": 2,
    "eff": "pos",
    "who": "Asie-Pacifique",
-   "t": "Nikkei +3,6 % et Taïwan en tête sur l'élan Nvidia, Hong Kong recule",
-   "p": "TSMC et Hon Hai progressent de près de 10 %, coupe-circuits déclenchés au KOSPI. Le Hang Seng (−0,9 %) efface ses gains sur l'énergie et la tech chinoise. Le MSCI Asie-Pacifique gagne 3,8 %, sa meilleure séance depuis juillet, et met fin à huit séances de baisse; Samsung et SK Hynix prennent plus de 8 %.",
+   "t": "Nikkei +3,6 % et Taïwan en tête sur l'élan Nvidia",
+   "p": "TSMC et Hon Hai progressent de près de 10 %, coupe-circuits déclenchés au KOSPI. Le MSCI Asie-Pacifique gagne 3,8 %, sa meilleure séance depuis juillet, et met fin à huit séances de baisse; Samsung et SK Hynix prennent plus de 8 %.",
    "as": [
     [
      "Nikkei",
      "up"
     ],
     [
-     "Hang Seng",
-     "dn"
+     "TAIEX",
+     "up"
     ]
    ],
    "s": [
@@ -1111,6 +1207,77 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    ],
    "z": [
     "us"
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "mix",
+   "z": [
+    "cn"
+   ],
+   "who": "Chine · marchés",
+   "t": "Hong Kong rend ses gains (−0,73 %), Shanghai résiste (+0,27 %)",
+   "p": "Le Hang Seng clôture à 22 219,65 après avoir ouvert en hausse de 1 %, plombé par l'énergie et une partie de la tech chinoise visée par les contrôles américains. Le Shanghai Composite finit à 3 548,37, l'élan IA s'essoufflant en séance.",
+   "as": [
+    [
+     "Hang Seng",
+     "dn"
+    ],
+    [
+     "Shanghai",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Yahoo Finance",
+     "https://finance.yahoo.com/quote/%5EHSI/"
+    ],
+    [
+     "AD HOC NEWS",
+     "https://www.ad-hoc-news.de/boerse/news/marktberichte/shanghai-composite-closes-0-27-prozent-higher-as-ai-rally-fades/70549619"
+    ],
+    [
+     "24/7 Wall St.",
+     "https://247wallst.com/cards/hong-kong-gave-back-its-morning-gain-and-closed-0-82-lower-hsi-market-bell-01m86993vvqqnp7ygzt70mkf59"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "mix",
+   "z": [
+    "cn",
+    "us"
+   ],
+   "who": "Chine · États-Unis",
+   "t": "Trêve commerciale en suspens jusqu'au G20 de Miami",
+   "p": "Le sommet Trump-Xi de Shenzhen (19 novembre) a laissé sans réponse publique les droits de douane, les terres rares et la tech. Une prolongation de la trêve est attendue au G20 de Miami le mois prochain. La Chine tient son engagement sur le soja mais les livraisons de terres rares restent très inférieures à leur niveau d'avant l'escalade.",
+   "as": [
+    [
+     "Cuivre",
+     "fl"
+    ],
+    [
+     "CNY",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "Reuters via US News",
+     "https://www.usnews.com/news/world/articles/2026-11-21/analysis-as-trump-basks-in-summit-pomp-chinas-xi-strengthens-his-hand"
+    ],
+    [
+     "CNBC",
+     "https://www.cnbc.com/2026/11/20/apec-summit-trump-xi-china-trade-taiwan.html"
+    ],
+    [
+     "China Briefing",
+     "https://www.china-briefing.com/news/us-china-relations-in-the-trump-2-0-implications/"
+    ]
    ]
   },
   {
@@ -1407,13 +1574,13 @@ for(const lv of [3,2,1]){
  }
 }
 $('mx').innerHTML=mx;
-const ZON={eu:'Europe',us:'US',rdm:'Reste du monde'};
-const zs=x=>x.z&&x.z.length?x.z:['eu','us','rdm'];
-const F={imp:new Set([3,2,1]),eff:new Set(cols),z:new Set(['eu','us','rdm'])};
+const ZON={eu:'Europe',us:'US',cn:'Chine',rdm:'Reste du monde'};
+const zs=x=>x.z&&x.z.length?x.z:['eu','us','cn','rdm'];
+const F={imp:new Set([3,2,1]),eff:new Set(cols),z:new Set(['eu','us','cn','rdm'])};
 const chips=(el,key,vals,lab)=>{el.insertAdjacentHTML('beforeend',vals.map(v=>`<button type="button" class="chip" id="f-${key}-${v}" aria-pressed="true" data-k="${key}" data-v="${v}">${lab[v]}</button>`).join(''))};
 chips($('fi'),'imp',[3,2,1],IMP);
 chips($('fe'),'eff',cols,EFF);
-chips($('fz'),'z',['eu','us','rdm'],ZON);
+chips($('fz'),'z',['eu','us','cn','rdm'],ZON);
 const card=x=>`<article class="it ${x.eff}" id="${x.id}">
  <div class="meta"><span class="imp i${x.imp}">${IMP[x.imp]}</span><span class="eff ${x.eff}">${EFF[x.eff]}</span><span class="zone">${zs(x).map(z=>esc(ZON[z]||z)).join(' · ')}</span><span class="who">#${x.id.slice(1)} · ${esc(x.who)}</span></div>
  <h3>${esc(x.t)}</h3><p>${esc(x.p)}</p>
@@ -1437,7 +1604,7 @@ document.querySelector('.bar').addEventListener('click',e=>{
 $('mx').addEventListener('click',e=>{
  const a=e.target.closest('.dot');if(!a)return;
  const x=D.items.find(i=>'#'+i.id===a.getAttribute('href'));
- if(x&&(!F.imp.has(x.imp)||!F.eff.has(x.eff)||!zs(x).some(z=>F.z.has(z)))){F.imp=new Set([3,2,1]);F.eff=new Set(cols);F.z=new Set(['eu','us','rdm']);document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','true'));render();}
+ if(x&&(!F.imp.has(x.imp)||!F.eff.has(x.eff)||!zs(x).some(z=>F.z.has(z)))){F.imp=new Set([3,2,1]);F.eff=new Set(cols);F.z=new Set(['eu','us','cn','rdm']);document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','true'));render();}
 });
 render();
 $('ag').innerHTML=D.agenda.map(a=>`<tr><td class="t">${esc(a.h)}</td><td>${esc(a.e)}</td><td><span class="imp i${a.i}">${IMP[a.i]}</span></td><td>${esc(a.n)}</td></tr>`).join('');
