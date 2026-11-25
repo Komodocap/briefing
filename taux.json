@@ -1,0 +1,88 @@
+{
+ "maj": "25/11/2026",
+ "asof": "lecture du marché au 23/11 · futures fed funds et €STR",
+ "b": [
+  {
+   "b": "Fed",
+   "r": "Fed funds 3,75–4,00 %",
+   "m": "9 décembre 2026",
+   "h": 93.2,
+   "k": 6.8,
+   "c": 0,
+   "v": "> 99 % mi-novembre",
+   "ir": "≈4,13 %",
+   "path": [
+    [
+     "9 déc. 2026",
+     "93,2 %",
+     "4,13 %",
+     "+25"
+    ],
+    [
+     "27 janv. 2027",
+     "100 %",
+     "4,30 %",
+     "+42"
+    ],
+    [
+     "17 mars 2027",
+     "100 %",
+     "4,44 %",
+     "+56"
+    ]
+   ],
+   "tot": "≈56 pb de hausses intégrées sur 9 réunions (≈2,3 hausses). Centralbank.watch donne 100 % pour décembre. Le PCE du 25/11 peut déplacer la probabilité de décembre.",
+   "s": [
+    [
+     "CME FedWatch via ChainCatcher (23/11)",
+     "https://www.chaincatcher.com/en/article/2307162"
+    ],
+    [
+     "Centralbank.watch, Fed (23/11)",
+     "https://centralbank.watch/federal-reserve/"
+    ]
+   ]
+  },
+  {
+   "b": "BCE",
+   "r": "Taux de dépôt 2,50 %",
+   "m": "17 décembre 2026",
+   "h": 87.8,
+   "k": 12.2,
+   "c": 0,
+   "v": "70 % le 9/11, 47 % le 26/10",
+   "ir": "≈2,72 %",
+   "path": [
+    [
+     "17 déc. 2026",
+     "87,8 %",
+     "2,72 %",
+     "+22"
+    ],
+    [
+     "4 févr. 2027",
+     "90,6 %",
+     "2,78 %",
+     "+28"
+    ],
+    [
+     "18 mars 2027",
+     "95,8 %",
+     "2,91 %",
+     "+41"
+    ]
+   ],
+   "tot": "≈59 pb de hausses intégrées sur 9 réunions (≈2,4 hausses). Autre lecture (WatchTower, 23/11): 82 % de hausse en décembre.",
+   "s": [
+    [
+     "Centralbank.watch, BCE (23/11)",
+     "https://centralbank.watch/european-central-bank/"
+    ],
+    [
+     "WatchTower Terminal, preview BCE (23/11)",
+     "https://watchtowerterminal.com/ecb-preview-december-2026/"
+    ]
+   ]
+  }
+ ]
+}

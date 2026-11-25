@@ -65,10 +65,31 @@ h2{font-size:22px;margin:32px 0 10px}
 .cidx .src{margin-top:6px;font-size:13px;color:var(--mute);overflow-wrap:anywhere}
 .cidx .src a{margin-right:10px}
 footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:40px;padding-top:12px}
+.rt{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;margin-top:12px}
+.rc{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.rc h3{margin:0;font:600 19px/1.2 var(--fd);display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.rc h3 small{font:400 13px Inter,sans-serif;color:var(--mute)}
+.rk{display:flex;align-items:baseline;gap:10px;margin:12px 0 6px;flex-wrap:wrap}
+.rk b{font:700 34px/1 Inter,sans-serif;font-variant-numeric:tabular-nums}
+.rk b.up{color:var(--neg)}.rk b.dn{color:var(--pos)}.rk b.fl{color:var(--ink)}
+.rk span{color:var(--mute);font-size:14px}
+.rbar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--rule);margin:6px 0}
+.rbar i{display:block;height:100%}.rbar .h{background:var(--neg)}.rbar .k{background:light-dark(#9AA7A3,#4E6461)}.rbar .c{background:var(--pos)}
+.rlg{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
+.rlg em{font-style:normal;display:inline-flex;align-items:center;gap:5px}
+.rlg em.ni:before{display:none}
+.rlg em:before{content:"";width:10px;height:10px;border-radius:2px;background:var(--c)}
+.rc table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px;font-variant-numeric:tabular-nums}
+.rc th,.rc td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+.rc th{font-size:12.5px;color:var(--mute);font-weight:600}
+.rc .n{text-align:right}.rc td:first-child{white-space:nowrap}
+.rc .rn{font-size:13.5px;color:var(--mute);margin:10px 0 0}
+.rc .rs{font-size:13px;color:var(--mute);margin:6px 0 0;overflow-wrap:anywhere}.rc .rs a{color:inherit}
+@media(max-width:900px){.rk b{font-size:28px}.rc table{font-size:13px}.rc th,.rc td{padding:5px 4px}}
 </style>
 </head>
 <body>
-<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a><a href="./#consensus">Consensus des banques<span>Objectifs Euro Stoxx 50, Stoxx 600, S&amp;P 500, Nasdaq 100</span></a></nav></div></div>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a><a href="./#consensus">Consensus des banques<span>Objectifs Euro Stoxx 50, Stoxx 600, S&amp;P 500, Nasdaq 100</span></a><a href="./#taux">Probabilités de taux<span>Fed et BCE: hausse, maintien, baisse par réunion</span></a></nav></div></div>
 <main>
  <h1>Briefing matinal du desk</h1>
  <p class="sub">Briefing matinal avant l'ouverture européenne de 7h30: banques centrales, chiffres, news et commentaires de banques, avec sources.</p>
@@ -77,6 +98,11 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
   <h2>Consensus des banques sur les indices <small id="consmaj"></small></h2>
   <p class="cnote" id="consnote"></p>
   <div class="cgrid" id="cgrid"></div>
+ </section>
+ <section id="taux" class="cons" hidden>
+  <h2>Probabilités de taux <small id="tauxmaj"></small></h2>
+  <p class="cnote" id="tauxnote"></p>
+  <div class="rt" id="rt"></div>
  </section>
  <div id="months"><p class="empty">Chargement des éditions…</p></div>
  <footer>Une édition par jour ouvré, publiée vers 7h00 (heure de Paris). Synthèse de sources publiques citées dans chaque page; ne constitue pas un conseil en investissement.</footer>
@@ -103,6 +129,21 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const url=u=>/^https:\/\//.test(u)?esc(u):'#';
 const fmt=n=>Number(n).toLocaleString('fr-FR');
 const up=(v,r)=>r?((v/r-1)*100).toFixed(1).replace('.',',')+' %':'';
+fetch('taux.json',{cache:'no-store'}).then(r=>r.json()).then(T=>{
+ if(!T||!T.b)return;const f=x=>(Math.round(x*10)/10).toString().replace('.',',');
+ document.getElementById('tauxmaj').textContent='mis à jour le '+T.maj;
+ document.getElementById('tauxnote').textContent='Probabilités implicites des marchés, '+(T.asof||'');
+ document.getElementById('rt').innerHTML=T.b.map(b=>{const top=b.h>=b.k&&b.h>=b.c?['h','up','hausse de 25 pb']:b.c>b.k?['c','dn','baisse de 25 pb']:['k','fl','maintien'];
+ return `<article class="rc"><h3>${esc(b.b)} <small>${esc(b.r)}</small></h3>
+<div class="rk"><b class="${top[1]}">${f(b[top[0]])} %</b><span>${top[2]} le ${esc(b.m)}</span></div>
+<div class="rbar" role="img" aria-label="Hausse ${f(b.h)} %, maintien ${f(b.k)} %, baisse ${f(b.c)} %"><i class="h" style="width:${+b.h}%"></i><i class="k" style="width:${+b.k}%"></i><i class="c" style="width:${+b.c}%"></i></div>
+<div class="rlg"><em style="--c:var(--neg)">Hausse ${f(b.h)} %</em><em style="--c:light-dark(#9AA7A3,#4E6461)">Maintien ${f(b.k)} %</em><em style="--c:var(--pos)">Baisse ${f(b.c)} %</em><em class="ni">Taux implicite ${esc(b.ir)}</em></div>
+${b.v?`<p class="rn">Avant: ${esc(b.v)}</p>`:''}
+<table><thead><tr><th>Réunion</th><th class="n">Hausse cumulée</th><th class="n">Taux implicite</th><th class="n">Écart (pb)</th></tr></thead><tbody>${(b.path||[]).map(r=>`<tr><td>${esc(r[0])}</td><td class="n">${esc(r[1])}</td><td class="n">${esc(r[2])}</td><td class="n">${esc(r[3])}</td></tr>`).join('')}</tbody></table>
+${b.tot?`<p class="rn">${esc(b.tot)}</p>`:''}<p class="rs">${(b.s||[]).map(x=>`<a href="${url(x[1])}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join(' · ')}</p></article>`}).join('');
+ document.getElementById('taux').hidden=false;
+ if(location.hash==='#taux')document.getElementById('taux').scrollIntoView();
+}).catch(()=>{});
 fetch('consensus.json',{cache:'no-store'}).then(r=>r.json()).then(C=>{
  if(!C||!C.idx)return;
  document.getElementById('consmaj').textContent='mis à jour le '+C.maj;
