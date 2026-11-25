@@ -127,6 +127,11 @@ td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
 .cidx .med{margin-top:10px;font-size:14px;border-left:3px solid var(--ember);padding-left:10px}
 .cidx .cn{margin-top:8px;font-size:13.5px;color:var(--mute)}
 .cidx .src{margin-top:6px}
+#ag tr.ag3 td{background:light-dark(#FBE1DE,#4A2420)}
+#ag tr.ag2 td{background:light-dark(#FDECD4,#47341A)}
+#ag tr.hol td{background:light-dark(#0E2A2B,#1F5355);color:#EDE8D8;font-weight:600}
+#ag tr td{border-bottom:2px solid var(--bg)}
+.holb{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:4px;background:#EDE8D8;color:#0E2A2B;white-space:nowrap}
 footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:34px;padding-top:12px}
 .brief .tag,.brief ol,#bh{font-family:Literata,Georgia,serif}
 .brief ol{font-size:17px;font-weight:300}
@@ -1118,12 +1123,6 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "n": "Consensus 0,2 % t/t, précédent 0,2 % (déjà publié)"
   },
   {
-   "h": "13:00",
-   "e": "États-Unis: demandes de prêts immobiliers MBA",
-   "i": 1,
-   "n": "Précédent −2,3 %"
-  },
-  {
    "h": "14:30",
    "e": "États-Unis: PCE d'octobre",
    "i": 3,
@@ -1154,12 +1153,6 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "n": "Revenus 0,4 % attendu (0,2 %), dépenses 0,4 % (0,5 %)"
   },
   {
-   "h": "14:30",
-   "e": "États-Unis: permis de construire",
-   "i": 1,
-   "n": "Consensus 1,295 M, précédent 1,398 M"
-  },
-  {
    "h": "16:00",
    "e": "États-Unis: ventes de logements neufs d'octobre",
    "i": 2,
@@ -1170,24 +1163,6 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "e": "États-Unis: stocks de pétrole EIA",
    "i": 2,
    "n": "Précédent +3,38 M de barils (API hier: +0,13 M)"
-  },
-  {
-   "h": "17:30",
-   "e": "États-Unis: GDPNow de la Fed d'Atlanta; adjudications de bons à 4 et 8 semaines",
-   "i": 1,
-   "n": "GDPNow précédent 3,2 %"
-  },
-  {
-   "h": "18:00",
-   "e": "États-Unis: stocks de gaz naturel",
-   "i": 1,
-   "n": "Consensus −19 Md pi³, précédent +20 Md"
-  },
-  {
-   "h": "19:00",
-   "e": "États-Unis: adjudication à 7 ans; comptage Baker Hughes",
-   "i": 1,
-   "n": "Rendement précédent 4,894 %"
   },
   {
    "h": "20:00",
@@ -1208,10 +1183,19 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "n": ""
   },
   {
-   "h": "Jeudi",
-   "e": "Thanksgiving: marchés US fermés",
+   "h": "Jeudi 26/11",
+   "e": "Thanksgiving: marchés actions et obligataires américains fermés",
    "i": 2,
-   "n": "Liquidité réduite"
+   "f": true,
+   "n": "Liquidité réduite sur les marchés européens"
+  },
+  {
+   "h": "Vendredi 27/11",
+   "e": "États-Unis: séance raccourcie (Black Friday), clôture anticipée des actions et du marché obligataire",
+   "i": 2,
+   "f": true,
+   "n": "Liquidité réduite",
+   "fb": "Séance raccourcie"
   }
  ],
  "agendaSrc": [
@@ -1310,7 +1294,7 @@ $('mx').addEventListener('click',e=>{
  if(x&&(!F.imp.has(x.imp)||!F.eff.has(x.eff)||!zs(x).some(z=>F.z.has(z)))){F.imp=new Set([3,2,1]);F.eff=new Set(cols);F.z=new Set(['eu','us','cn','rdm']);document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','true'));render();}
 });
 render();
-$('ag').innerHTML=D.agenda.map(a=>`<tr><td class="t">${esc(a.h)}</td><td>${esc(a.e)}</td><td><span class="imp i${a.i}">${IMP[a.i]}</span></td><td>${esc(a.n)}</td></tr>`).join('');
+$('ag').innerHTML=D.agenda.filter(a=>a.f||a.i>=2).map(a=>`<tr class="${a.f?'hol':'ag'+a.i}"><td class="t">${esc(a.h)}</td><td>${esc(a.e)}</td><td>${a.f?`<span class="holb">${esc(a.fb||'Férié / marché fermé')}</span>`:`<span class="imp i${a.i}">${IMP[a.i]}</span>`}</td><td>${esc(a.n)}</td></tr>`).join('');
 $('ft').innerHTML='Agenda: '+D.agendaSrc.map(s=>`<a href="${url(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ')+'<br>Couleur de bordure = impact sur l\'appétit pour le risque (actions européennes); badge bleu = importance. Les flèches indiquent le sens attendu du prix de chaque actif (▲ Bund = le prix monte, le rendement baisse). Synthèse rédigée à partir des sources citées; vérifiez les niveaux sur votre plateforme avant de traiter.';
 {
  const drawA=list=>{const A=list.slice().sort((a,b)=>b.d.localeCompare(a.d));
