@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KomodoCap · Briefing du 25/11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300..700&family=Literata:opsz,wght@7..72,300..700&display=swap">
+<style>
+/* VOICE work: la feuille du matin d'un desk, dense et ordonnée
+   IDEA le "run sheet" imprimé qu'on distribue aux traders avant l'ouverture
+   PICTURE matrice importance × impact où chaque info est un point cliquable, à côté du briefing
+   COLOUR blanc, encre #10131a, bleu de Prusse pour l'importance, vert/carmin/ambre/gris pour l'impact
+   TYPE Literata (titres) + Inter (texte, chiffres)
+   LAYOUT laptop : briefing à gauche, matrice + chiffres à droite ; téléphone : briefing, matrice, chiffres, flux */
+:root{color-scheme:light dark;--deep:#0E2A2B;--sand:#EDE8D8;--bg:light-dark(#F3F5F1,#0B1B1C);--ink:light-dark(#14211F,#EDE8D8);--mute:light-dark(#51615E,#A9B8B3);--rule:light-dark(#D3DAD5,#244244);--panel:light-dark(#FFFFFF,#122A2B);--imp:light-dark(#0E2A2B,#7FC8C0);--impink:light-dark(#EDE8D8,#0B1B1C);--ember:#E4572E;--pos:light-dark(#1E7F5C,#4CC28F);--neg:light-dark(#C23B3B,#FF7A6E);--mix:light-dark(#B7791F,#E9B04F);--neu:light-dark(#6B7A77,#93A6A2);--dot:light-dark(#FFFFFF,#0B1B1C);--fd:"Source Serif 4",Georgia,serif}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+.kc,.kc-band{background-color:var(--deep);color:var(--sand);background-image:radial-gradient(circle at 100% 100%,transparent 0 11px,rgba(237,232,216,.09) 11.5px 12.5px,transparent 13px),radial-gradient(circle at 0 100%,transparent 0 11px,rgba(237,232,216,.09) 11.5px 12.5px,transparent 13px);background-size:28px 28px;background-position:0 0,14px 14px}
+.kc{background-image:linear-gradient(90deg,#0E2A2B 22%,rgba(14,42,43,.6) 62%,rgba(14,42,43,.15)),radial-gradient(circle at 100% 100%,transparent 0 11px,rgba(237,232,216,.11) 11.5px 12.5px,transparent 13px),radial-gradient(circle at 0 100%,transparent 0 11px,rgba(237,232,216,.11) 11.5px 12.5px,transparent 13px);background-size:100% 100%,28px 28px,28px 28px;background-position:0 0,0 0,14px 14px;background-repeat:no-repeat,repeat,repeat}
+.kc{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(calc((100% - 1240px)/2 + 4vw),16px);border-bottom:3px solid var(--ember);position:relative}
+.kc .brand{font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.01em;color:var(--sand);text-decoration:none}
+.kc .brand b{color:#F2A488;font-weight:600}
+.menu-btn{display:inline-flex;align-items:center;gap:9px;font:600 14px Inter,sans-serif;color:var(--sand);background:transparent;border:1.5px solid rgba(237,232,216,.5);border-radius:6px;padding:0 14px;min-height:44px;cursor:pointer}
+.menu-btn:hover{background:rgba(237,232,216,.1)}
+.menu-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.menu-panel{position:absolute;right:max(calc((100% - 1240px)/2 + 4vw),16px);top:calc(100% + 8px);z-index:20;width:min(320px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:2px;box-shadow:0 10px 30px rgba(14,42,43,.18)}
+.menu-panel[hidden]{display:none}
+.menu-panel a{display:flex;flex-direction:column;gap:1px;padding:11px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font:600 16px var(--fd)}
+.menu-panel a span{font:400 12.5px Inter,sans-serif;color:var(--mute)}
+.menu-panel a:hover{background:color-mix(in srgb,var(--imp) 8%,transparent)}
+.menu-panel a[aria-current]{border-left:3px solid var(--ember);border-radius:0 6px 6px 0}
+:focus-visible{outline:3px solid var(--ember)!important;outline-offset:2px}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:light-dark(#0E5E5A,#7FC8C0)}
+.band{padding:clamp(20px,3vw,40px) max(4vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,4.2vw,46px)}
+h2{font-size:clamp(22px,2.4vw,28px)}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;padding-bottom:6px}
+.ed{color:var(--mute);font-size:14px}
+.ed b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;margin-top:24px}
+.brief{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--ember);border-radius:10px;padding:clamp(18px,2.4vw,28px)}
+.brief .hd{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.brief .tag{font-size:14px;font-weight:600;color:var(--ember)}
+.brief h2{margin-top:4px}
+.brief ol{margin:16px 0 0;padding-left:1.3em}
+.brief li{margin:0 0 9px}
+.brief li::marker{font-weight:700;color:var(--ember)}
+.btn{font:600 14px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:6px;border:0;background:var(--ember);color:#fff;cursor:pointer}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--imp);outline-offset:2px}
+.btn.ok{background:var(--pos);border-color:var(--pos)}
+.lect{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:10px;margin-top:18px}
+.lect div{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px}
+.lect b{display:block;font-size:15px}
+.vig{margin-top:16px;font-size:14px;border-top:1px solid var(--rule);padding-top:12px}
+.vig b{color:var(--neg)}
+.side{display:flex;flex-direction:column;gap:22px}
+.mx{display:grid;grid-template-columns:5.6em repeat(4,minmax(0,1fr));gap:4px;font-size:13px}
+.mx .h{font-weight:600;text-align:center;padding:2px 0 4px}
+.mx .r{font-weight:600;display:flex;align-items:center;color:var(--imp)}
+.cell{min-height:64px;border-radius:6px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start}
+.cell.pos{background:color-mix(in srgb,var(--pos) 11%,transparent)}
+.cell.neg{background:color-mix(in srgb,var(--neg) 11%,transparent)}
+.cell.mix{background:color-mix(in srgb,var(--mix) 13%,transparent)}
+.cell.neu{background:color-mix(in srgb,var(--neu) 11%,transparent)}
+.dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 11px Inter,sans-serif;color:var(--dot);text-decoration:none}
+.dot.pos{background:var(--pos)}.dot.neg{background:var(--neg)}.dot.mix{background:var(--mix)}.dot.neu{background:var(--neu)}
+.note{font-size:13px;color:var(--mute);margin:6px 0 0}
+.tape{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.6em,1fr));border-top:1px solid var(--rule)}
+.tape>div{padding:8px 4px 8px 0;border-bottom:1px solid var(--rule);font-size:13px}
+.tape .v{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tape .c{font-weight:600}
+.up{color:var(--pos)}.dn{color:var(--neg)}.fl{color:var(--neu)}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 0}
+.grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--mute)}
+.chip{font:500 14px Inter,sans-serif;min-height:36px;padding:0 12px;border-radius:18px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--imp);color:var(--impink);border-color:var(--imp)}
+.sec{margin-top:30px}
+.sec h2{border-bottom:1px solid var(--rule);padding-bottom:8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sec h2 small{font:500 14px Inter,sans-serif;color:var(--mute)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,22em),1fr));gap:14px;margin-top:14px}
+.it{border:1px solid var(--rule);border-left:6px solid var(--neu);border-radius:8px;padding:14px 16px;background:var(--bg)}
+.it.pos{border-left-color:var(--pos);background:color-mix(in srgb,var(--pos) 5%,var(--bg))}
+.it.neg{border-left-color:var(--neg);background:color-mix(in srgb,var(--neg) 5%,var(--bg))}
+.it.mix{border-left-color:var(--mix);background:color-mix(in srgb,var(--mix) 6%,var(--bg))}
+.it:target{outline:3px solid var(--imp)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin-bottom:6px}
+.imp{font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.imp.i3{background:var(--imp);color:var(--impink)}
+.imp.i2{border:1.5px solid var(--imp);color:var(--imp)}
+.imp.i1{border:1px solid var(--rule);color:var(--mute)}
+.eff{font-weight:700;white-space:nowrap}
+.eff.pos{color:var(--pos)}.eff.neg{color:var(--neg)}.eff.mix{color:var(--mix)}.eff.neu{color:var(--neu)}
+.who{color:var(--mute)}
+.zone{font-size:12px;font-weight:600;padding:1px 7px;border-radius:4px;background:color-mix(in srgb,var(--imp) 10%,transparent);color:var(--imp);white-space:nowrap}
+.it h3{font:650 17px/1.3 Inter,sans-serif;margin:0 0 6px}
+.it p{margin:0;font-size:15px}
+.as{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.as span{font-size:13px;font-weight:600;border:1px solid var(--rule);border-radius:4px;padding:1px 7px;white-space:nowrap}
+.src{margin-top:10px;font-size:13px;color:var(--mute);overflow-wrap:anywhere}
+.note{overflow-wrap:anywhere}
+.src a{margin-right:10px}
+.empty{color:var(--mute);font-size:15px;padding:10px 0}
+table{border-collapse:collapse;width:100%;margin-top:12px;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:13px;color:var(--mute);font-weight:600}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--mute);margin-top:10px}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.arch{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.arch a{font:500 14px Inter,sans-serif;display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.arch a.cur{background:var(--imp);color:var(--impink);border-color:var(--imp)}
+.arch select{font:16px Inter,sans-serif;min-height:44px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);color:var(--ink);padding:0 8px}
+footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:34px;padding-top:12px}
+.brief .tag,.brief ol,#bh{font-family:Literata,Georgia,serif}
+.brief ol{font-size:17px;font-weight:300}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){table{font-size:13px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--rule)}.stack td{border:0;padding:2px 0}.mx{grid-template-columns:4.2em repeat(4,minmax(0,1fr))}.dot{width:22px;height:22px;font-size:10px}}
+@media print{.bar,.btn{display:none}.it{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a aria-current="page" id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a></nav></div></div>
+<header class="band" style="padding-bottom:0">
+ <div class="wrap">
+  <div class="top">
+   <div>
+    <div class="ed" id="ed"></div>
+    <h1 id="ttl"></h1>
+   </div>
+   <div class="ed" style="text-align:right"><div id="ver"></div><a href="./">Sommaire</a> · <a href="#archives">Briefings précédents</a></div>
+  </div>
+  <div class="grid">
+   <section class="brief" aria-labelledby="bh">
+    <div class="hd">
+     <div><div class="tag">Briefing aux traders · à lire avant 7h30</div><h2 id="bh"></h2></div>
+     <button class="btn" id="cp" type="button">Copier le briefing</button>
+    </div>
+    <ol id="pts"></ol>
+    <div class="lect" id="lect"></div>
+    <div class="vig" id="vig"></div>
+   </section>
+   <div class="side">
+    <section aria-label="Matrice importance et impact">
+     <h2 style="font-size:20px">Toutes les infos du jour en un coup d'œil</h2>
+     <p class="note">Ligne = importance, colonne = impact sur le risque (actions européennes). Cliquez un point pour lire l'info.</p>
+     <div class="mx" id="mx" style="margin-top:10px"></div>
+    </section>
+    <section aria-label="Chiffres de marché">
+     <h2 style="font-size:20px">Marchés avant l'ouverture</h2>
+     <div class="tape" id="tape" style="margin-top:10px"></div>
+     <p class="note" id="tapen"></p>
+    </section>
+   </div>
+  </div>
+ </div>
+</header>
+<nav class="bar" aria-label="Filtres">
+ <div class="wrap" style="padding-inline:max(4vw,16px)">
+  <div class="grp" id="fi">Importance</div>
+  <div class="grp" id="fe">Impact</div>
+  <div class="grp" id="fz">Marchés</div>
+ </div>
+</nav>
+<main class="band" style="padding-top:0">
+ <div class="wrap" id="secs"></div>
+ <div class="wrap sec">
+  <h2>Agenda du jour <small>heure de Paris</small></h2>
+  <table class="stack"><thead><tr><th>Heure</th><th>Événement</th><th>Importance</th><th>Note</th></tr></thead><tbody id="ag"></tbody></table>
+ </div>
+ <div class="wrap sec" id="archives">
+  <h2>Briefings précédents <small id="archn"></small></h2>
+  <div class="arch" id="arch"></div>
+ </div>
+ <div class="wrap">
+  <div class="leg"><span><i style="background:var(--pos)"></i>Positif pour le risque</span><span><i style="background:var(--neg)"></i>Négatif pour le risque</span><span><i style="background:var(--mix)"></i>Mitigé</span><span><i style="background:var(--neu)"></i>Neutre / à surveiller</span><span>▲ ▼ = sens attendu du prix de l'actif</span></div>
+  <footer id="ft"></footer>
+ </div>
+</main>
+
+<script type="application/json" id="data">
+{
+ "date": "Mercredi 25 novembre 2026",
+ "edition": "Édition publiée à 8h15 (heure de Paris), en retard exceptionnel; données de la nuit jusqu'à 7h10",
+ "titre": "Le rebond IA s'essouffle, tarifs US et Ormuz pèsent avant un gros paquet de chiffres US",
+ "briefing": {
+  "titre": "Ouverture sous pression: le trade IA recule, Washington prépare de nouveaux tarifs et les banques centrales restent dures",
+  "points": [
+   "Wall Street: le rebond IA s'efface, Nasdaq 100 −2 % et S&P 500 −0,5 %, Nvidia −5,9 %, semi-conducteurs −7,9 %; le Dow passe 50 000 (+0,85 %) sur la rotation value.",
+   "Ce matin: futures Nasdaq 100 −1,4 % et S&P 500 −0,8 %, ouverture européenne attendue terne; Treasuries et dollar recherchés.",
+   "Tarifs: Washington prépare de nouvelles hausses (WSJ), 15 % ou moins pour l'UE, le Japon et la Corée, davantage pour la Chine; annonce possible de l'USTR dès cette semaine.",
+   "BCE: chœur hawkish (Kaasik, Kazaks, Simkus, Sleijpen), hausse de décembre acquise, Simkus ouvre la porte à davantage en 2027; la BCE discuterait aujourd'hui d'un relèvement des réserves obligatoires de 1 % à 2 % (sources). BoE: Greene juge la politique « légèrement en retard ».",
+   "Fed: hausse de décembre quasi certaine; confiance des consommateurs à 103,3 (92,5 attendu), plus haut depuis près de deux ans.",
+   "Ormuz: l'Iran maintient le détroit fermé, nouvelles explosions de tankers; WTI 82,05 $ (+2,4 %), Brent 91,40 $ (+2,3 %). Cuivre −4,9 %, or −2,2 %.",
+   "Chine: fixing à 6,7088, le plus fort depuis 2022 mais loin de l'estimation (6,6559), injection nette de 601 Md de yuans; Pékin prolonge jusqu'au 27 janvier la suspension de contrôles à l'export vers les États-Unis et vise les hybrides européens.",
+   "Inflation hors zone: Australie 4,9 % (4,7 % attendu), prix des services au Japon 4,2 %; Banque du Canada: probabilité de hausse en décembre à 80 %.",
+   "Agenda: PIB final allemand à 8h00, puis paquet US avant Thanksgiving (PCE, PIB T3, biens durables, inscriptions au chômage). Dell pulvérise le consensus (carnet IA de 132 Md$)."
+  ],
+  "lecture": [
+   {
+    "a": "FESX",
+    "b": "Baissier à l'ouverture",
+    "t": "Nasdaq futures −1,4 % et menace tarifaire sur les exportateurs; ne pas acheter le premier creux avant le paquet US."
+   },
+   {
+    "a": "Bund",
+    "b": "Neutre",
+    "t": "Soutenu par l'aversion au risque, freiné par le pétrole en hausse et la BCE hawkish."
+   },
+   {
+    "a": "Schatz / Bobl",
+    "b": "Sous pression",
+    "t": "Chœur BCE et piste d'un relèvement des réserves obligatoires: le court terme reste vendeur."
+   },
+   {
+    "a": "EUR/USD",
+    "b": "Range bas vers 1,0950",
+    "t": "Dollar refuge ce matin; PCE et PIB US décideront de la sortie."
+   }
+  ],
+  "vigilance": "Ormuz et Mer Rouge (pétrole), annonce tarifaire de l'USTR, décision éventuelle de la BCE sur les réserves obligatoires, paquet US de l'après-midi, liquidité réduite avant Thanksgiving."
+ },
+ "tape": [
+  {
+   "n": "S&P 500",
+   "v": "7 201",
+   "c": "−0,50 %",
+   "d": "dn"
+  },
+  {
+   "n": "Nasdaq 100",
+   "v": "26 214",
+   "c": "−1,99 %",
+   "d": "dn"
+  },
+  {
+   "n": "Dow Jones",
+   "v": "50 019",
+   "c": "+0,85 %",
+   "d": "up"
+  },
+  {
+   "n": "S&P 500 fut.",
+   "v": "—",
+   "c": "−0,8 %",
+   "d": "dn"
+  },
+  {
+   "n": "Nasdaq 100 fut.",
+   "v": "—",
+   "c": "−1,4 %",
+   "d": "dn"
+  },
+  {
+   "n": "EUR/USD",
+   "v": "≈ 1,0950",
+   "c": "repli ce matin",
+   "d": "dn"
+  },
+  {
+   "n": "DXY (clôture)",
+   "v": "103,83",
+   "c": "−0,5 %",
+   "d": "dn"
+  },
+  {
+   "n": "USD/JPY",
+   "v": "≈ 159",
+   "c": "+0,2 %",
+   "d": "up"
+  },
+  {
+   "n": "GBP/USD",
+   "v": "> 1,31",
+   "c": "+0,6 %",
+   "d": "up"
+  },
+  {
+   "n": "UST 10 ans",
+   "v": "4,92 %",
+   "c": "—",
+   "d": "fl"
+  },
+  {
+   "n": "Bund 10 ans",
+   "v": "3,26 %",
+   "c": "fut. −2 ticks",
+   "d": "fl"
+  },
+  {
+   "n": "WTI janv.",
+   "v": "82,05 $",
+   "c": "+2,35 %",
+   "d": "up"
+  },
+  {
+   "n": "Brent",
+   "v": "91,40 $",
+   "c": "+2,27 %",
+   "d": "up"
+  },
+  {
+   "n": "Or",
+   "v": "—",
+   "c": "−2,2 %",
+   "d": "dn"
+  },
+  {
+   "n": "Cuivre LME",
+   "v": "—",
+   "c": "−4,9 %",
+   "d": "dn"
+  },
+  {
+   "n": "Bitcoin",
+   "v": "—",
+   "c": "−2,3 %",
+   "d": "dn"
+  },
+  {
+   "n": "Hang Seng",
+   "v": "—",
+   "c": "n.c.",
+   "d": "fl"
+  },
+  {
+   "n": "Shanghai Comp.",
+   "v": "—",
+   "c": "n.c.",
+   "d": "fl"
+  },
+  {
+   "n": "USD/CNY fixing",
+   "v": "6,7088",
+   "c": "vs 6,6559 att.",
+   "d": "fl"
+  }
+ ],
+ "tapeNote": "Actions US, change et matières premières: clôture de mardi. Futures: niveaux de la nuit. Hong Kong et Shanghai non disponibles au moment de la publication. Sources: FinancialJuice, Newsquawk, Reuters, FXStreet.",
+ "tapeSrc": [
+  {
+   "t": "Newsquawk – Asia-Pac Opening 25/11",
+   "u": "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+  },
+  {
+   "t": "FinancialJuice – Asia Market Wrap",
+   "u": "https://features.financialjuice.com/2026/11/25/stocks-slide-as-ai-trade-falters-bonds-gain-asia-market-wrap/"
+  },
+  {
+   "t": "FinancialJuice – pétrole",
+   "u": "https://www.financialjuice.com/News/9866632/Brent-Crude-futures-settle-at-9140bbl-up-203-227.aspx"
+  },
+  {
+   "t": "FXStreet – fixing PBoC",
+   "u": "https://www.fxstreet.com/news/pboc-sets-usd-cny-reference-rate-at-67088-vs-67111-previous-202611250115"
+  }
+ ],
+ "sections": [
+  {
+   "id": "bc-eu",
+   "t": "Banques centrales · Europe"
+  },
+  {
+   "id": "bc-us",
+   "t": "Banques centrales · États-Unis"
+  },
+  {
+   "id": "bc-cn",
+   "t": "Banques centrales · Chine"
+  },
+  {
+   "id": "bc-rdm",
+   "t": "Banques centrales · Reste du monde"
+  },
+  {
+   "id": "macro",
+   "t": "Chiffres macro"
+  },
+  {
+   "id": "news",
+   "t": "Marchés, géopolitique et valeurs"
+  },
+  {
+   "id": "banques",
+   "t": "Commentaires de banques et de brokers"
+  }
+ ],
+ "items": [
+  {
+   "cat": "bc-eu",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "BCE · Kaasik, Kazaks, Simkus, Sleijpen, Vujcic",
+   "t": "Chœur hawkish à la BCE: la hausse de décembre est acquise, la suite reste ouverte",
+   "p": "Kaasik et Kazaks jugent qu'il faut encore relever les taux, les salaires étant décisifs. Simkus estime qu'un resserrement supplémentaire pourrait être nécessaire en 2027 si l'inflation persiste, ne voit pas de risque d'excès et note que la faiblesse de l'euro ajoute à l'inflation. Sleijpen: décembre est clair, l'après est incertain.",
+   "as": [
+    [
+     "Schatz",
+     "dn"
+    ],
+    [
+     "Bund",
+     "dn"
+    ],
+    [
+     "EUR",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-eu",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "BCE · réserves obligatoires",
+   "t": "La BCE discuterait aujourd'hui d'un relèvement des réserves obligatoires de 1 % à 2 %",
+   "p": "Information de sources rapportée le 18 novembre. Une hausse retirerait de la liquidité au système et pèserait sur les banques; à surveiller dans les communiqués de la journée.",
+   "as": [
+    [
+     "Banques",
+     "dn"
+    ],
+    [
+     "Schatz",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-european-market-wrap---18th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-eu",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "BoE · Megan Greene",
+   "t": "Greene: un resserrement supplémentaire est approprié, la politique est « légèrement en retard »",
+   "p": "Elle ne soutiendrait 50 pb qu'avec des preuves claires. Les entreprises anticipent des hausses de salaires de 3,6 %, trop élevées: environ 3 % serait compatible avec la cible.",
+   "as": [
+    [
+     "GBP",
+     "up"
+    ],
+    [
+     "Gilts",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-eu",
+   "imp": 1,
+   "eff": "neu",
+   "z": [
+    "eu"
+   ],
+   "who": "BCE · succession",
+   "t": "Les capitales chercheraient un lot de consolation pour Klaas Knot afin d'éviter un vote au sommet européen",
+   "p": "Selon le FT; signe que la course à la présidence de la BCE tourne en défaveur du candidat le plus hawkish.",
+   "as": [
+    [
+     "EUR",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/eurozone-capitals-are-reportedly-seeking-a-consolation-prize-for-klaas-knot-in-an-effort-to-avoid-a-vote-at-the-eu-summit-this-week-according-to-ft"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-us",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "Fed · anticipations",
+   "t": "Hausse de la Fed en décembre désormais quasi certaine",
+   "p": "Un responsable de la Fed de New York a soutenu une hausse en décembre, que le marché intègre presque entièrement. Williams voit l'inflation à 3,5 % fin 2026 et des risques orientés à la hausse.",
+   "as": [
+    [
+     "UST",
+     "dn"
+    ],
+    [
+     "USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Capp Notes",
+     "https://cappnotes.substack.com/p/closing-look-tuesday-november-24"
+    ],
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-us",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "Fed · minutes du taux d'escompte",
+   "t": "Cinq Fed régionales demandaient une hausse du taux d'escompte, sept un statu quo",
+   "p": "Un signal de plus de la pression pour resserrer au sein du système.",
+   "as": [
+    [
+     "UST",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-cn",
+   "imp": 2,
+   "eff": "neu",
+   "z": [
+    "cn"
+   ],
+   "who": "PBoC · fixing et liquidité",
+   "t": "Fixing à 6,7088: le plus fort depuis juillet 2022, mais toujours très en deçà de l'estimation (6,6559)",
+   "p": "Pékin laisse le yuan s'apprécier au compte-gouttes. Injection nette de 601 Md de yuans: 617 Md en pensions à 1 jour et 500 Md à 7 jours, contre 516 Md arrivant à échéance.",
+   "as": [
+    [
+     "CNY",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive",
+     "https://investinglive.com/central-banks/pboc-sets-usd-cny-mid-point-today-at-6-7088-vs-estimate-at-6-6559/"
+    ],
+    [
+     "FXStreet",
+     "https://www.fxstreet.com/news/pboc-sets-usd-cny-reference-rate-at-67088-vs-67111-previous-202611250115"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-rdm",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "BoC · Tiff Macklem",
+   "t": "Macklem: il faudra monter les taux si l'inflation reste trop haute trop longtemps; hausse de décembre à 80 %",
+   "p": "Les entreprises répercutent davantage de coûts et les effets de second tour du choc pétrolier rendent l'inflation plus persistante. Après ses propos, les swaps portent la probabilité d'une hausse en décembre de 65 % à 80 %; Nomura, CIBC et BMO l'anticipent désormais.",
+   "as": [
+    [
+     "CAD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866460/BoCs-Gov-Macklem-If-inflation-is-going-to-be-too-high-for-two-long-we-would-need-to-hike-rates.aspx"
+    ],
+    [
+     "FinancialJuice – swaps",
+     "https://www.financialjuice.com/News/9866470/BoC-December-rate-hike-chances-rise-to-80-from-65-after-Macklem-remarks-swap-market-data-shows.aspx"
+    ],
+    [
+     "FinancialJuice – Nomura",
+     "https://www.financialjuice.com/News/9866667/Nomura-We-see-the-BOC-to-hike-in-December-previous-forecast-was-January.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 2,
+   "eff": "mix",
+   "z": [
+    "us"
+   ],
+   "who": "États-Unis · Conference Board",
+   "t": "Confiance des consommateurs à 103,3 contre 92,5 attendu, plus haut depuis près de deux ans",
+   "p": "Perception du marché du travail en amélioration. Bon pour la croissance, mais un argument de plus pour la hausse de la Fed. Richmond Fed manufacturier à 3 (2 attendu); Case-Shiller à 2,6 % sur un an (2,7 % attendu).",
+   "as": [
+    [
+     "USD",
+     "up"
+    ],
+    [
+     "UST",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ],
+    [
+     "Yahoo Finance",
+     "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-24-221148355.html"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Australie · CPI octobre",
+   "t": "Inflation australienne à 4,9 % (4,7 % attendu), sous-jacente à 3,8 %",
+   "p": "L'accélération inattendue conforte le discours hawkish de la RBA.",
+   "as": [
+    [
+     "AUD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866906/Australian-CPI-YoY-NSA-Actual-49-Forecast-47-Previous-43.aspx"
+    ],
+    [
+     "FinancialJuice – trimmed mean",
+     "https://www.financialjuice.com/News/9866904/Australian-CPI-Trimmed-Mean-YoY-Actual-38-Forecast-36-Previous-36.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Japon",
+   "t": "Prix des services à 4,2 % (3,6 % attendu), adjudication à 40 ans boudée",
+   "p": "Le gouvernement abaisse son jugement sur la consommation, une première depuis février 2024, et la Première ministre Takaichi demande un deuxième budget rectificatif. Ratio de couverture de l'adjudication JGB 40 ans à 2,63 contre 3,10 la fois précédente.",
+   "as": [
+    [
+     "JGB",
+     "dn"
+    ],
+    [
+     "JPY",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866879/Japanese-Service-PPI-Actual-42-Forecast-36-Previous-37.aspx"
+    ],
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "États-Unis · clôture",
+   "t": "Le rebond IA s'efface: Nasdaq 100 −2 %, Nvidia −5,9 %, le Dow passe 50 000",
+   "p": "Les semi-conducteurs chutent de 7,9 % et la tech de 2,8 %, alors que la santé, la consommation de base et les services publics progressent. Anthropic passe sous son prix d'introduction pour la première fois.",
+   "as": [
+    [
+     "Nasdaq",
+     "dn"
+    ],
+    [
+     "FESX",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Reuters via NBC",
+     "https://www.nbcnews.com/business/markets/stocks-lower-after-nvidia-fueled-gains-rcna611211"
+    ],
+    [
+     "Capp Notes",
+     "https://cappnotes.substack.com/p/closing-look-tuesday-november-24"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us",
+    "eu"
+   ],
+   "who": "Ce matin",
+   "t": "Futures Nasdaq −1,4 %, S&P −0,8 %: deuxième séance de baisse pour la tech en vue",
+   "p": "Les doutes sur la durabilité du boom IA poussent à vendre la tech; Treasuries et dollar profitent de la demande refuge. Ouverture européenne attendue terne.",
+   "as": [
+    [
+     "FESX",
+     "dn"
+    ],
+    [
+     "Bund",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Asia Wrap",
+     "https://features.financialjuice.com/2026/11/25/stocks-slide-as-ai-trade-falters-bonds-gain-asia-market-wrap/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "eu",
+    "us",
+    "cn",
+    "rdm"
+   ],
+   "who": "États-Unis · tarifs",
+   "t": "Washington prépare de nouvelles hausses de droits de douane sur la Chine, l'UE et d'autres partenaires",
+   "p": "Selon le WSJ, l'UE, le Japon et la Corée du Sud feraient face à 15 % ou moins, la Chine à davantage, le Vietnam et l'Inde aussi. Selon le FT, les pays ayant un accord seraient plafonnés, avec 2,5 à 5 % de plus pour l'UE, le Japon et la Corée, en plus des 10 à 12,5 % déjà en place. L'USTR pourrait annoncer ses conclusions dès cette semaine.",
+   "as": [
+    [
+     "FESX",
+     "dn"
+    ],
+    [
+     "Autos",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ],
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866323/New-US-tariffs-expected-Tuesday-wont-exceed-trade-deal-levels-Trump-Section-301-tariffs-to-be-targeted-not-a-blanket-rate-according-to-a-person.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Iran · Ormuz",
+   "t": "L'Iran garde Ormuz fermé, les explosions de tankers se multiplient",
+   "p": "Le chef de l'armée Hatami ordonne de garder le détroit fermé tant que sept conditions ne sont pas remplies. Un quatrième tanker a explosé sur une mine et deux autres ont pris feu cette nuit sur une route non autorisée. Washington débattrait de cibler les dirigeants iraniens (NBC). Le pétrole a effacé ses pertes: WTI 82,05 $, Brent 91,40 $.",
+   "as": [
+    [
+     "Pétrole",
+     "up"
+    ],
+    [
+     "FESX",
+     "dn"
+    ],
+    [
+     "Bund",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – tankers",
+     "https://www.financialjuice.com/News/9867167/Iran-revolutionary-guards-navy-two-tankers-blaze-on-unauthorized-route-through-Strait-of-Hormuz---state-media.aspx"
+    ],
+    [
+     "FinancialJuice – 4e tanker",
+     "https://www.financialjuice.com/News/9866661/IRGC-Navy-A-fourth-oil-tanker-exploded-after-striking-a-sea-mine-east-of-the-Strait-of-Hormuz-other-vessels-turned-back-amid-warnings-over-unauthorized-routes---Press-TV.aspx"
+    ],
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Mer Rouge",
+   "t": "Les Houthis menacent Djeddah après des frappes de la coalition sur Hodeïda",
+   "p": "La coalition menée par l'Arabie saoudite a frappé le port de Hodeïda et intercepté des drones près de Ras Tanura. Les Houthis menacent les ports saoudiens de la mer Rouge.",
+   "as": [
+    [
+     "Pétrole",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866769/Yemens-Houthis-threaten-to-strike-Jeddah-port-and-other-Saudi-Red-Sea-ports-if-Hodeidah-is-attacked-post-on-X.aspx"
+    ],
+    [
+     "FinancialJuice – Ras Tanura",
+     "https://www.financialjuice.com/News/9867093/Saudi-led-coalition-air-defenses-intercepted-and-destroyed-four-drones-in-Ras-Tanura-in-eastern-province.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "pos",
+   "z": [
+    "us"
+   ],
+   "who": "Dell",
+   "t": "Dell pulvérise le consensus et relève ses objectifs, carnet de serveurs IA à 132 Md$",
+   "p": "Chiffre d'affaires de 54,94 Md$ (49,33 attendu), BPA ajusté de 9,45 $ (6,60 attendu), objectif annuel relevé à 202 Md$ et rachats d'actions augmentés de 25 Md$. HPE a en revanche déçu.",
+   "as": [
+    [
+     "Tech",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866704/Dell-Technologies-Q3-Earnings--FY-Guidance-DELL.aspx"
+    ],
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "pos",
+   "z": [
+    "cn",
+    "us"
+   ],
+   "who": "Chine · MOFCOM",
+   "t": "Pékin prolonge jusqu'au 27 janvier la suspension de contrôles à l'export vers les États-Unis",
+   "p": "La suspension porte sur certains biens à double usage et certains minerais critiques. Geste d'apaisement avant le G20 de Miami.",
+   "as": [
+    [
+     "Cuivre",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "cn",
+    "eu"
+   ],
+   "who": "Chine · UE",
+   "t": "Pékin prend des mesures temporaires sur les hybrides européens",
+   "p": "Le MOFCOM surveillera l'enquête de sauvegarde de l'UE sur les véhicules hybrides et se réserve tous les droits, y compris un recours à l'OMC.",
+   "as": [
+    [
+     "Autos",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "us",
+    "cn"
+   ],
+   "who": "Nvidia · Huawei",
+   "t": "Schumer accuse Huang d'avoir expédié des puces avancées en Chine; Huawei condamné aux États-Unis",
+   "p": "Jensen Huang doit témoigner devant les deux chambres du Congrès. Huawei a été reconnu coupable de 10 chefs sur 12, dont complot de vol de secrets commerciaux et fraude bancaire.",
+   "as": [
+    [
+     "Tech",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Schumer",
+     "https://www.financialjuice.com/News/9866512/Democratic-Senate-Leader-Schumer-accuses-Nvidia-CEO-Huang-of-shipping-extremely-advanced-chips-to-China-violating-US-export-control-law---Statement-on-X-NVDA.aspx"
+    ],
+    [
+     "FinancialJuice – Huawei",
+     "https://www.financialjuice.com/News/9866660/Chinas-Huawei-convicted-at-US-criminal-trial-on-10-of-12-counts-including-conspiracy-to-steal-trade-secrets-and-bank-fraud.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Métaux",
+   "t": "Cuivre −4,9 %, or −2,2 %",
+   "p": "Les métaux industriels décrochent avec le trade IA; Codelco discute de primes plus basses avec des acheteurs chinois.",
+   "as": [
+    [
+     "Cuivre",
+     "dn"
+    ],
+    [
+     "Or",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "Russie",
+   "t": "Poutine: restreindre les exportations russes d'énergie se retournera contre l'Europe",
+   "p": "Le Kremlin indique que les dates des prochaines discussions Russie–États-Unis–Ukraine ne sont pas fixées.",
+   "as": [
+    [
+     "Gaz",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice",
+     "https://www.financialjuice.com/News/9866340/Putin-Attempts-to-curb-Russian-energy-exports-will-backfire-especially-for-Europe.aspx"
+    ],
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 1,
+   "eff": "pos",
+   "z": [
+    "eu"
+   ],
+   "who": "UE · finances publiques",
+   "t": "Bruxelles pourrait clore la procédure de déficit excessif de l'Italie en 2027",
+   "p": "Si les données 2026 confirment un déficit sous 3 % du PIB. La Commission proposerait en revanche une amende pour la Bulgarie.",
+   "as": [
+    [
+     "BTP",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Newsquawk",
+     "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Nomura, CIBC, BMO",
+   "t": "Trois banques anticipent désormais une hausse de la Banque du Canada en décembre",
+   "p": "Nomura avance sa prévision, qui visait janvier.",
+   "as": [
+    [
+     "CAD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Nomura",
+     "https://www.financialjuice.com/News/9866667/Nomura-We-see-the-BOC-to-hike-in-December-previous-forecast-was-January.aspx"
+    ],
+    [
+     "FinancialJuice – CIBC",
+     "https://www.financialjuice.com/News/9866576/CIBC-expects-the-Bank-of-Canada-to-hike-in-December.aspx"
+    ],
+    [
+     "FinancialJuice – BMO",
+     "https://www.financialjuice.com/News/9866511/BMO-expects-Bank-of-Canada-to-hike-in-December.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 1,
+   "eff": "neu",
+   "z": [
+    "cn"
+   ],
+   "who": "Lecture du fixing PBoC",
+   "t": "Un fixing très au-dessus de l'estimation signale la tolérance de Pékin à un yuan plus faible qu'attendu",
+   "p": "Lecture de FinScans: l'écart d'environ 530 pips avec l'estimation Reuters soutient un USD/CNY plus élevé à court terme.",
+   "as": [
+    [
+     "CNY",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "FinScans",
+     "https://finscans.com/news/2026/11/25/pboc-sets-usdcny-reference-rate-at-67088-missing-reuters"
+    ]
+   ]
+  }
+ ],
+ "agenda": [
+  {
+   "h": "8:00",
+   "e": "PIB final T3 Allemagne",
+   "i": 2,
+   "n": "Consensus 0,2 % t/t, 1,2 % sur un an"
+  },
+  {
+   "h": "n.c.",
+   "e": "BCE: discussion sur les réserves obligatoires (1 % à 2 %)",
+   "i": 2,
+   "n": "Selon des sources"
+  },
+  {
+   "h": "n.c.",
+   "e": "Adjudication US de bons à 4 semaines",
+   "i": 1,
+   "n": "105 Md$"
+  },
+  {
+   "h": "Après-midi",
+   "e": "États-Unis: PCE d'octobre, PIB T3 (2e estimation), biens durables, inscriptions au chômage",
+   "i": 3,
+   "n": "Calendrier avancé à cause de Thanksgiving; horaires n.c."
+  },
+  {
+   "h": "n.c.",
+   "e": "Beige Book de la Fed",
+   "i": 2,
+   "n": ""
+  },
+  {
+   "h": "Cette semaine",
+   "e": "Sommet européen (succession à la BCE), annonce tarifaire possible de l'USTR",
+   "i": 2,
+   "n": ""
+  },
+  {
+   "h": "Jeudi",
+   "e": "Thanksgiving: marchés US fermés",
+   "i": 2,
+   "n": "Liquidité réduite"
+  }
+ ],
+ "agendaSrc": [
+  {
+   "t": "FinancialJuice – Morning Juice",
+   "u": "https://features.financialjuice.com/2026/11/25/morning-juice-europe-session-prep-695/"
+  },
+  {
+   "t": "Newsquawk – Asia-Pac Opening",
+   "u": "https://www.newsquawk.com/headlines/newsquawk-daily-asia-pac-opening-news---25th-november-2026"
+  },
+  {
+   "t": "FinancialJuice – adjudication",
+   "u": "https://www.financialjuice.com/News/9866343/US-Treasury-to-auction-105-bln-4-week-bills-on-November-25th-to-settle-on-December-1st.aspx"
+  }
+ ],
+ "archives": [
+  {
+   "d": "2026-11-25",
+   "l": "Mer. 25 nov.",
+   "u": "2026-11-25.html"
+  },
+  {
+   "d": "2026-11-24",
+   "l": "Mar. 24 nov.",
+   "u": "2026-11-24.html"
+  }
+ ]
+}
+</script>
+<script>
+{
+const D=JSON.parse(document.getElementById('data').textContent);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const url=u=>/^https:\/\//.test(u)||/^[\w.-]+\.html$/.test(u)?esc(u):'#';
+const $=id=>document.getElementById(id);
+const IMP={3:'Haute',2:'Moyenne',1:'Faible'};
+const EFF={pos:'Positif',neg:'Négatif',mix:'Mitigé',neu:'Neutre'};
+const ARR={up:'▲',dn:'▼',fl:'►'};
+const CLS={up:'up',dn:'dn',fl:'fl'};
+D.items.forEach((it,i)=>it.id='i'+(i+1));
+$('ed').textContent=D.date;
+$('ttl').textContent=D.titre;
+$('ver').textContent=D.edition;
+$('bh').textContent=D.briefing.titre;
+$('pts').innerHTML=D.briefing.points.map(p=>`<li>${esc(p)}</li>`).join('');
+$('lect').innerHTML=D.briefing.lecture.map(l=>`<div><b>${esc(l.a)} · ${esc(l.b)}</b>${esc(l.t)}</div>`).join('');
+$('vig').innerHTML=`<b>Points de vigilance:</b> ${esc(D.briefing.vigilance)}`;
+$('tape').innerHTML=D.tape.map(t=>{const lv=t.v&&t.v!=='—';return `<div>${esc(t.n)}<div class="v ${lv?'':(CLS[t.d]||'fl')}">${lv?esc(t.v):(ARR[t.d]||'')+' '+esc(t.c)}</div>${lv?`<div class="c ${CLS[t.d]||'fl'}">${ARR[t.d]||''} ${esc(t.c)}</div>`:''}</div>`}).join('');
+$('tapen').innerHTML=esc(D.tapeNote)+'<br>'+D.tapeSrc.map(s=>`<a href="${url(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ');
+const cols=['pos','neg','mix','neu'];
+let mx='<div></div>'+cols.map(c=>`<div class="h eff ${c}">${EFF[c]}</div>`).join('');
+for(const lv of [3,2,1]){
+ mx+=`<div class="r">${IMP[lv]}</div>`;
+ for(const c of cols){
+  const its=D.items.filter(x=>x.imp===lv&&x.eff===c);
+  mx+=`<div class="cell ${c}">${its.map(x=>`<a class="dot ${c}" href="#${x.id}" title="${esc(x.t)}" aria-label="${esc(x.t)}">${x.id.slice(1)}</a>`).join('')}</div>`;
+ }
+}
+$('mx').innerHTML=mx;
+const ZON={eu:'Europe',us:'US',cn:'Chine',rdm:'Reste du monde'};
+const zs=x=>x.z&&x.z.length?x.z:['eu','us','cn','rdm'];
+const F={imp:new Set([3,2,1]),eff:new Set(cols),z:new Set(['eu','us','cn','rdm'])};
+const chips=(el,key,vals,lab)=>{el.insertAdjacentHTML('beforeend',vals.map(v=>`<button type="button" class="chip" id="f-${key}-${v}" aria-pressed="true" data-k="${key}" data-v="${v}">${lab[v]}</button>`).join(''))};
+chips($('fi'),'imp',[3,2,1],IMP);
+chips($('fe'),'eff',cols,EFF);
+chips($('fz'),'z',['eu','us','cn','rdm'],ZON);
+const card=x=>`<article class="it ${x.eff}" id="${x.id}">
+ <div class="meta"><span class="imp i${x.imp}">${IMP[x.imp]}</span><span class="eff ${x.eff}">${EFF[x.eff]}</span><span class="zone">${zs(x).map(z=>esc(ZON[z]||z)).join(' · ')}</span><span class="who">#${x.id.slice(1)} · ${esc(x.who)}</span></div>
+ <h3>${esc(x.t)}</h3><p>${esc(x.p)}</p>
+ ${x.as.length?`<div class="as">${x.as.map(a=>`<span class="${CLS[a[1]]}">${esc(a[0])} ${ARR[a[1]]}</span>`).join('')}</div>`:''}
+ <div class="src">Sources: ${x.s.map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</div>
+</article>`;
+const render=()=>{
+ $('secs').innerHTML=D.sections.map(s=>{
+  const its=D.items.filter(x=>x.cat===s.id&&F.imp.has(x.imp)&&F.eff.has(x.eff)&&zs(x).some(z=>F.z.has(z))).sort((a,b)=>b.imp-a.imp);
+  const tot=D.items.filter(x=>x.cat===s.id).length;
+  return `<section class="sec" aria-label="${esc(s.t)}"><h2>${esc(s.t)} <small>${its.length} / ${tot}</small></h2>${its.length?`<div class="items">${its.map(card).join('')}</div>`:'<p class="empty">Aucune info avec ces filtres.</p>'}</section>`;
+ }).join('');
+};
+document.querySelector('.bar').addEventListener('click',e=>{
+ const b=e.target.closest('.chip');if(!b)return;
+ const k=b.dataset.k,v=k==='imp'?+b.dataset.v:b.dataset.v;
+ if(F[k].has(v)){if(F[k].size>1)F[k].delete(v)}else F[k].add(v);
+ document.querySelectorAll(`.chip[data-k=${k}]`).forEach(c=>c.setAttribute('aria-pressed',F[k].has(k==='imp'?+c.dataset.v:c.dataset.v)));
+ render();
+});
+$('mx').addEventListener('click',e=>{
+ const a=e.target.closest('.dot');if(!a)return;
+ const x=D.items.find(i=>'#'+i.id===a.getAttribute('href'));
+ if(x&&(!F.imp.has(x.imp)||!F.eff.has(x.eff)||!zs(x).some(z=>F.z.has(z)))){F.imp=new Set([3,2,1]);F.eff=new Set(cols);F.z=new Set(['eu','us','cn','rdm']);document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','true'));render();}
+});
+render();
+$('ag').innerHTML=D.agenda.map(a=>`<tr><td class="t">${esc(a.h)}</td><td>${esc(a.e)}</td><td><span class="imp i${a.i}">${IMP[a.i]}</span></td><td>${esc(a.n)}</td></tr>`).join('');
+$('ft').innerHTML='Agenda: '+D.agendaSrc.map(s=>`<a href="${url(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ')+'<br>Couleur de bordure = impact sur l\'appétit pour le risque (actions européennes); badge bleu = importance. Les flèches indiquent le sens attendu du prix de chaque actif (▲ Bund = le prix monte, le rendement baisse). Synthèse rédigée à partir des sources citées; vérifiez les niveaux sur votre plateforme avant de traiter.';
+{
+ const drawA=list=>{const A=list.slice().sort((a,b)=>b.d.localeCompare(a.d));
+ $('archn').textContent=A.length+' édition'+(A.length>1?'s':'');
+ const recent=A.slice(0,30),old=A.slice(30);
+ $('arch').innerHTML=recent.map((a,i)=>`<a href="${url(a.u)}" target="_blank" rel="noopener" class="${i===0?'cur':''}">${esc(a.l)}</a>`).join('')+(old.length?`<details style="width:100%;margin-top:6px"><summary class="note" style="cursor:pointer">Éditions plus anciennes (${old.length})</summary><div class="arch">${old.map(a=>`<a href="${url(a.u)}" target="_blank" rel="noopener">${esc(a.d)}</a>`).join('')}</div></details>`:'');};
+ drawA(D.archives||[]);
+ fetch('editions.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(e=>{if(Array.isArray(e)&&e.length){const seen=new Set(e.map(x=>x.d));drawA(e.map(x=>({d:x.d,l:x.l,u:x.f})).concat((D.archives||[]).filter(a=>!seen.has(a.d))))}}).catch(()=>{});
+}
+$('cp').addEventListener('click',async()=>{
+ const b=D.briefing;
+ const txt=`BRIEFING ${D.date.toUpperCase()}\n${b.titre}\n\n`+b.points.map((p,i)=>`${i+1}. ${p}`).join('\n')+'\n\nLecture desk:\n'+b.lecture.map(l=>`- ${l.a}: ${l.b}. ${l.t}`).join('\n')+`\n\nVigilance: ${b.vigilance}`;
+ const btn=$('cp');
+ try{await navigator.clipboard.writeText(txt);btn.textContent='Copié ✓';btn.classList.add('ok')}catch(err){btn.textContent='Copie refusée par le navigateur'}
+ setTimeout(()=>{btn.textContent='Copier le briefing';btn.classList.remove('ok')},2200);
+});
+}
+</script>
+<script>{const b=document.getElementById('menuBtn'),p=document.getElementById('menuPanel');b.addEventListener('click',e=>{e.stopPropagation();const o=p.hidden;p.hidden=!o;b.setAttribute('aria-expanded',o)});document.addEventListener('click',e=>{if(!p.hidden&&!p.contains(e.target)){p.hidden=true;b.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){p.hidden=true;b.setAttribute('aria-expanded','false')}})}</script>
+<script>{fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{E.sort((a,b)=>b.d.localeCompare(a.d));const f=E[0]&&E[0].f;if(f&&/^[\w.-]+\.html$/.test(f))document.getElementById('mToday').href=f}).catch(()=>{})}</script>
+</body>
+</html>
