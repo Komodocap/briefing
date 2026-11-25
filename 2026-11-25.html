@@ -136,7 +136,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
 </style>
 </head>
 <body>
-<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a aria-current="page" id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a></nav></div></div>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a aria-current="page" id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a><a href="./#consensus">Consensus des banques<span>Objectifs Euro Stoxx 50, Stoxx 600, S&amp;P 500, Nasdaq 100</span></a></nav></div></div>
 <header class="band" style="padding-bottom:0">
  <div class="wrap">
   <div class="top">
@@ -185,9 +185,9 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
   <table class="stack"><thead><tr><th>Heure</th><th>Événement</th><th>Importance</th><th>Note</th></tr></thead><tbody id="ag"></tbody></table>
  </div>
  <div class="wrap sec" id="consensus">
-  <h2>Consensus des banques sur les indices <small id="consmaj"></small></h2>
-  <p class="note" id="consnote"></p>
-  <div class="cgrid" id="cgrid"></div>
+  <h2>Consensus des banques sur les indices</h2>
+  <p class="cn" id="consjour"></p>
+  <p><a href="./#consensus">Voir les objectifs des banques sur l'Euro Stoxx 50, le Stoxx 600, le S&amp;P 500 et le Nasdaq 100 sur le sommaire →</a></p>
  </div>
  <div class="wrap sec" id="archives">
   <h2>Briefings précédents <small id="archn"></small></h2>
@@ -1180,213 +1180,7 @@ footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-
    "u": "2026-11-24.html"
   }
  ],
- "consensus": {
-  "maj": "25/11/2026",
-  "note": "Objectifs de fin 2027 sauf mention. Potentiel calculé sur la dernière clôture indiquée.",
-  "idx": [
-   {
-    "n": "Euro Stoxx 50",
-    "ref": null,
-    "refl": "",
-    "rows": [
-     {
-      "b": "UBS (Year Ahead 2027)",
-      "v": 7000,
-      "h": "fin 2027",
-      "d": "19/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://fr.investing.com/news/stock-market-news/ubs-adopte-une-position-neutre-sur-les-actions-mondiales-et-privilegie-la-zone-euro-3702277"
-       ]
-      ]
-     }
-    ],
-    "med": "",
-    "note": "Peu de banques publient un objectif sur l'Euro Stoxx 50; la plupart visent le Stoxx 600. La liste sera complétée au fil des publications."
-   },
-   {
-    "n": "Stoxx Europe 600",
-    "ref": null,
-    "refl": "",
-    "rows": [
-     {
-      "b": "UBS (stratégie actions Europe)",
-      "v": 750,
-      "h": "fin 2027",
-      "d": "11/11/2026",
-      "s": [
-       [
-        "Zonebourse",
-        "https://www.zonebourse.com/actualite-bourse/les-actions-preferees-d-une-grande-banque-europeenne-pour-2027-ce785edadf8ff322"
-       ]
-      ]
-     },
-     {
-      "b": "Barclays",
-      "v": 725,
-      "h": "fin 2027",
-      "d": "17/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://fr.investing.com/news/stock-market-news/barclays-privilegie-les-midcaps-britanniques-et-les-actions-allemandes-pour-2027-3699517"
-       ]
-      ]
-     },
-     {
-      "b": "Goldman Sachs",
-      "v": 700,
-      "h": "12 mois (670 à 3 mois, 680 à 6 mois)",
-      "d": "13/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://www.investing.com/news/stock-market-news/what-does-goldman-expect-for-european-stocks-in-2027-5027285"
-       ]
-      ]
-     }
-    ],
-    "med": "Sondage Reuters (16-24/11): médiane 703 fin 2027, 680 à mi-2027 (fourchette 630 à 720)",
-    "meds": [
-     [
-      "Reuters via Investing.com",
-      "https://www.investing.com/news/economy-news/european-stocks-set-for-gains-in-2027-but-volatility-is-likely-poll-shows-5049813"
-     ]
-    ],
-    "note": ""
-   },
-   {
-    "n": "S&P 500",
-    "ref": 7201,
-    "refl": "clôture du 24/11",
-    "rows": [
-     {
-      "b": "Deutsche Bank",
-      "v": 9000,
-      "h": "fin 2027",
-      "d": "24/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://uk.investing.com/news/stock-market-news/deutsche-bank-sees-sp-500-hitting-9000-in-2027-4999581"
-       ]
-      ]
-     },
-     {
-      "b": "Goldman Sachs",
-      "v": 8700,
-      "h": "fin 2027",
-      "d": "13/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://www.investing.com/news/stock-market-news/no-bear-in-sight-major-wall-st-banks-set-2027-sp-500-targets-5041570"
-       ]
-      ]
-     },
-     {
-      "b": "Morgan Stanley",
-      "v": 8700,
-      "h": "fin 2027",
-      "d": "16/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://www.investing.com/news/stock-market-news/no-bear-in-sight-major-wall-st-banks-set-2027-sp-500-targets-5041570"
-       ]
-      ]
-     },
-     {
-      "b": "Barclays",
-      "v": 8700,
-      "h": "fin 2027 (abaissé de 8 800)",
-      "d": "23/11/2026",
-      "s": [
-       [
-        "Financial Newswire",
-        "https://financialnewswire.com.au/investment/barclays-nervously-overweight-equities-on-ai-strength/"
-       ]
-      ]
-     },
-     {
-      "b": "JPMorgan",
-      "v": 8200,
-      "h": "fin 2027",
-      "d": "24/11/2026",
-      "s": [
-       [
-        "investingLive",
-        "https://investinglive.com/stock-market-update/jpmorgan-s-8-200-s-p-500-target-for-2027-sits-below-peers-as-fed-risk-tempers-ai-upside/"
-       ]
-      ]
-     },
-     {
-      "b": "UBS (Year Ahead 2027)",
-      "v": 8200,
-      "h": "fin 2027",
-      "d": "19/11/2026",
-      "s": [
-       [
-        "Investing.com",
-        "https://fr.investing.com/news/stock-market-news/ubs-adopte-une-position-neutre-sur-les-actions-mondiales-et-privilegie-la-zone-euro-3702277"
-       ]
-      ]
-     },
-     {
-      "b": "Wells Fargo",
-      "v": 8200,
-      "h": "fin 2027",
-      "d": "11/2026",
-      "s": [
-       [
-        "Yahoo Finance",
-        "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sends-signal-investors-150700390.html"
-       ]
-      ]
-     },
-     {
-      "b": "Bank of America",
-      "v": 8200,
-      "h": "fin 2027",
-      "d": "11/2026",
-      "s": [
-       [
-        "Beinsure",
-        "https://beinsure.com/news/us-stock-market-nasdaq-sp500-fall-ai-stocks-slide/"
-       ]
-      ]
-     }
-    ],
-    "med": "Sondage Reuters (42 stratégistes, 16-24/11): médiane 8 150 · consensus Bloomberg ≈ 8 470",
-    "meds": [
-     [
-      "Reuters via Investing.com",
-      "https://au.investing.com/news/stock-market-news/bruised-sp-500-seen-gaining-more-than-12-by-end2027-reuters-poll-4793947"
-     ],
-     [
-      "investingLive",
-      "https://investinglive.com/stock-market-update/jpmorgan-s-8-200-s-p-500-target-for-2027-sits-below-peers-as-fed-risk-tempers-ai-upside/"
-     ]
-    ],
-    "note": ""
-   },
-   {
-    "n": "Nasdaq 100",
-    "ref": 26214,
-    "refl": "clôture du 24/11",
-    "rows": [],
-    "med": "",
-    "note": "Aucune grande banque ne publie d'objectif sur le Nasdaq 100. À titre indicatif, NAGA convertit les objectifs S&P 500 de 8 300 à 8 800 en un Nasdaq 100 d'environ 31 650 à 33 560 (équivalent calculé, pas une cible bancaire).",
-    "meds": [
-     [
-      "NAGA",
-      "https://naga.com/en/news-and-analysis/articles/nasdaq-100-price-prediction"
-     ]
-    ]
-   }
-  ]
- }
+ "consensusJour": "Pas de révision d'objectif aujourd'hui."
 }
 </script>
 <script>
@@ -1462,20 +1256,7 @@ $('ft').innerHTML='Agenda: '+D.agendaSrc.map(s=>`<a href="${url(s.u)}" target="_
  drawA(D.archives||[]);
  fetch('editions.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(e=>{if(Array.isArray(e)&&e.length){const seen=new Set(e.map(x=>x.d));drawA(e.map(x=>({d:x.d,l:x.l,u:x.f})).concat((D.archives||[]).filter(a=>!seen.has(a.d))))}}).catch(()=>{});
 }
-{
- const C=D.consensus;
- if(C&&C.idx){
-  $('consmaj').textContent='mis à jour le '+C.maj;
-  $('consnote').textContent=C.note||'';
-  const fmt=n=>Number(n).toLocaleString('fr-FR');
-  const up=(v,r)=>r?((v/r-1)*100).toFixed(1).replace('.',',')+' %':'';
-  $('cgrid').innerHTML=C.idx.map(x=>{
-   const rows=(x.rows||[]).slice().sort((a,b)=>b.v-a.v);
-   const tbl=rows.length?`<div class="scroll"><table><thead><tr><th>Banque</th><th style="text-align:right">Objectif</th>${x.ref?'<th style="text-align:right">Potentiel</th>':''}<th>Horizon</th><th>Publié</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.b)} ${(r.s||[]).map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener" title="${esc(s[0])}">↗</a>`).join(' ')}</td><td class="v">${fmt(r.v)}</td>${x.ref?`<td class="u ${r.v>=x.ref?'up':'dn'}">${up(r.v,x.ref)}</td>`:''}<td>${esc(r.h)}</td><td>${esc(r.d)}</td></tr>`).join('')}</tbody></table></div>`:'';
-   return `<div class="cidx"><h3>${esc(x.n)}</h3>${x.ref?`<div class="ref">Référence: ${fmt(x.ref)} (${esc(x.refl)})</div>`:''}${tbl}${x.med?`<div class="med">${esc(x.med)}</div>`:''}${x.note?`<div class="cn">${esc(x.note)}</div>`:''}${(x.meds||[]).length?`<div class="src">Sources: ${x.meds.map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</div>`:''}</div>`;
-  }).join('');
- }else{const s=document.getElementById('consensus');if(s)s.hidden=true}
-}
+{const t=document.getElementById('consjour');if(t)t.textContent=D.consensusJour||'';}
 $('cp').addEventListener('click',async()=>{
  const b=D.briefing;
  const txt=`BRIEFING ${D.date.toUpperCase()}\n${b.titre}\n\n`+b.points.map((p,i)=>`${i+1}. ${p}`).join('\n')+'\n\nLecture desk:\n'+b.lecture.map(l=>`- ${l.a}: ${l.b}. ${l.t}`).join('\n')+`\n\nVigilance: ${b.vigilance}`;

@@ -32,7 +32,7 @@
 :focus-visible{outline:3px solid var(--ember)!important;outline-offset:2px}
 *{box-sizing:border-box;min-width:0}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:clamp(24px,4vw,56px) max(4vw,16px)}
+main{max-width:1120px;margin:0 auto;padding:clamp(24px,4vw,56px) max(4vw,16px)}
 h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0}
 h1{font-size:clamp(30px,4.4vw,44px)}
 h2{font-size:22px;margin:32px 0 10px}
@@ -46,15 +46,38 @@ h2{font-size:22px;margin:32px 0 10px}
 .grid a{display:inline-flex;flex-direction:column;justify-content:center;min-height:44px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;color:var(--ink);text-decoration:none;font-size:14px;white-space:nowrap}
 .grid a:hover{border-color:var(--ember)}
 .empty{color:var(--mute)}
+.cons h2 small{font:500 14px Inter,sans-serif;color:var(--mute);margin-left:6px}
+.cnote{font-size:13.5px;color:var(--mute);margin:4px 0 0}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,24em),1fr));gap:14px;margin-top:12px}
+.cidx{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;background:var(--panel)}
+.cidx h3{font:600 20px/1.2 var(--fd);margin:0 0 4px}
+.cidx .ref{font-size:13px;color:var(--mute)}
+.cidx .scroll{overflow-x:auto}
+.cidx table{border-collapse:collapse;width:100%;margin-top:8px;font-size:14px}
+.cidx th,.cidx td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+.cidx th{font-size:12.5px;color:var(--mute);font-weight:600}
+.cidx td.v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cidx td.u{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cidx .up{color:var(--pos)}.cidx .dn{color:var(--neg)}
+.cidx a{color:light-dark(#0E5E5A,#7FC8C0)}
+.cidx .med{margin-top:10px;font-size:14px;border-left:3px solid var(--ember);padding-left:10px}
+.cidx .cn{margin-top:8px;font-size:13.5px;color:var(--mute)}
+.cidx .src{margin-top:6px;font-size:13px;color:var(--mute);overflow-wrap:anywhere}
+.cidx .src a{margin-right:10px}
 footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:40px;padding-top:12px}
 </style>
 </head>
 <body>
-<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a></nav></div></div>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a aria-current="page" href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a><a href="./#consensus">Consensus des banques<span>Objectifs Euro Stoxx 50, Stoxx 600, S&amp;P 500, Nasdaq 100</span></a></nav></div></div>
 <main>
  <h1>Briefing matinal du desk</h1>
  <p class="sub">Briefing matinal avant l'ouverture européenne de 7h30: banques centrales, chiffres, news et commentaires de banques, avec sources.</p>
  <div id="last"></div>
+ <section id="consensus" class="cons" hidden>
+  <h2>Consensus des banques sur les indices <small id="consmaj"></small></h2>
+  <p class="cnote" id="consnote"></p>
+  <div class="cgrid" id="cgrid"></div>
+ </section>
  <div id="months"><p class="empty">Chargement des éditions…</p></div>
  <footer>Une édition par jour ouvré, publiée vers 7h00 (heure de Paris). Synthèse de sources publiques citées dans chaque page; ne constitue pas un conseil en investissement.</footer>
 </main>
@@ -75,5 +98,22 @@ fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{
 </script>
 <script>{const b=document.getElementById('menuBtn'),p=document.getElementById('menuPanel');b.addEventListener('click',e=>{e.stopPropagation();const o=p.hidden;p.hidden=!o;b.setAttribute('aria-expanded',o)});document.addEventListener('click',e=>{if(!p.hidden&&!p.contains(e.target)){p.hidden=true;b.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){p.hidden=true;b.setAttribute('aria-expanded','false')}})}</script>
 <script>{fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{E.sort((a,b)=>b.d.localeCompare(a.d));const f=E[0]&&E[0].f;if(f&&/^[\w.-]+\.html$/.test(f))document.getElementById('mToday').href=f}).catch(()=>{})}</script>
+<script>{
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const url=u=>/^https:\/\//.test(u)?esc(u):'#';
+const fmt=n=>Number(n).toLocaleString('fr-FR');
+const up=(v,r)=>r?((v/r-1)*100).toFixed(1).replace('.',',')+' %':'';
+fetch('consensus.json',{cache:'no-store'}).then(r=>r.json()).then(C=>{
+ if(!C||!C.idx)return;
+ document.getElementById('consmaj').textContent='mis à jour le '+C.maj;
+ document.getElementById('consnote').textContent=C.note||'';
+ document.getElementById('cgrid').innerHTML=C.idx.map(x=>{
+  const rows=(x.rows||[]).slice().sort((a,b)=>b.v-a.v);
+  const tbl=rows.length?`<div class="scroll"><table><thead><tr><th>Banque</th><th style="text-align:right">Objectif</th>${x.ref?'<th style="text-align:right">Potentiel</th>':''}<th>Horizon</th><th>Publié</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.b)} ${(r.s||[]).map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener" title="${esc(s[0])}">↗</a>`).join(' ')}</td><td class="v">${fmt(r.v)}</td>${x.ref?`<td class="u ${r.v>=x.ref?'up':'dn'}">${up(r.v,x.ref)}</td>`:''}<td>${esc(r.h)}</td><td>${esc(r.d)}</td></tr>`).join('')}</tbody></table></div>`:'';
+  return `<div class="cidx"><h3>${esc(x.n)}</h3>${x.ref?`<div class="ref">Référence: ${fmt(x.ref)} (${esc(x.refl)})</div>`:''}${tbl}${x.med?`<div class="med">${esc(x.med)}</div>`:''}${x.note?`<div class="cn">${esc(x.note)}</div>`:''}${(x.meds||[]).length?`<div class="src">Sources: ${x.meds.map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</div>`:''}</div>`;
+ }).join('');
+ document.getElementById('consensus').hidden=false;
+}).catch(()=>{});
+}</script>
 </body>
 </html>

@@ -1,0 +1,207 @@
+{
+ "maj": "25/11/2026",
+ "note": "Objectifs de fin 2027 sauf mention. Potentiel calculé sur la dernière clôture indiquée.",
+ "idx": [
+  {
+   "n": "Euro Stoxx 50",
+   "ref": null,
+   "refl": "",
+   "rows": [
+    {
+     "b": "UBS (Year Ahead 2027)",
+     "v": 7000,
+     "h": "fin 2027",
+     "d": "19/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://fr.investing.com/news/stock-market-news/ubs-adopte-une-position-neutre-sur-les-actions-mondiales-et-privilegie-la-zone-euro-3702277"
+      ]
+     ]
+    }
+   ],
+   "med": "",
+   "note": "Peu de banques publient un objectif sur l'Euro Stoxx 50; la plupart visent le Stoxx 600. La liste sera complétée au fil des publications."
+  },
+  {
+   "n": "Stoxx Europe 600",
+   "ref": null,
+   "refl": "",
+   "rows": [
+    {
+     "b": "UBS (stratégie actions Europe)",
+     "v": 750,
+     "h": "fin 2027",
+     "d": "11/11/2026",
+     "s": [
+      [
+       "Zonebourse",
+       "https://www.zonebourse.com/actualite-bourse/les-actions-preferees-d-une-grande-banque-europeenne-pour-2027-ce785edadf8ff322"
+      ]
+     ]
+    },
+    {
+     "b": "Barclays",
+     "v": 725,
+     "h": "fin 2027",
+     "d": "17/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://fr.investing.com/news/stock-market-news/barclays-privilegie-les-midcaps-britanniques-et-les-actions-allemandes-pour-2027-3699517"
+      ]
+     ]
+    },
+    {
+     "b": "Goldman Sachs",
+     "v": 700,
+     "h": "12 mois (670 à 3 mois, 680 à 6 mois)",
+     "d": "13/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://www.investing.com/news/stock-market-news/what-does-goldman-expect-for-european-stocks-in-2027-5027285"
+      ]
+     ]
+    }
+   ],
+   "med": "Sondage Reuters (16-24/11): médiane 703 fin 2027, 680 à mi-2027 (fourchette 630 à 720)",
+   "meds": [
+    [
+     "Reuters via Investing.com",
+     "https://www.investing.com/news/economy-news/european-stocks-set-for-gains-in-2027-but-volatility-is-likely-poll-shows-5049813"
+    ]
+   ],
+   "note": ""
+  },
+  {
+   "n": "S&P 500",
+   "ref": 7201,
+   "refl": "clôture du 24/11",
+   "rows": [
+    {
+     "b": "Deutsche Bank",
+     "v": 9000,
+     "h": "fin 2027",
+     "d": "24/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://uk.investing.com/news/stock-market-news/deutsche-bank-sees-sp-500-hitting-9000-in-2027-4999581"
+      ]
+     ]
+    },
+    {
+     "b": "Goldman Sachs",
+     "v": 8700,
+     "h": "fin 2027",
+     "d": "13/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://www.investing.com/news/stock-market-news/no-bear-in-sight-major-wall-st-banks-set-2027-sp-500-targets-5041570"
+      ]
+     ]
+    },
+    {
+     "b": "Morgan Stanley",
+     "v": 8700,
+     "h": "fin 2027",
+     "d": "16/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://www.investing.com/news/stock-market-news/no-bear-in-sight-major-wall-st-banks-set-2027-sp-500-targets-5041570"
+      ]
+     ]
+    },
+    {
+     "b": "Barclays",
+     "v": 8700,
+     "h": "fin 2027 (abaissé de 8 800)",
+     "d": "23/11/2026",
+     "s": [
+      [
+       "Financial Newswire",
+       "https://financialnewswire.com.au/investment/barclays-nervously-overweight-equities-on-ai-strength/"
+      ]
+     ]
+    },
+    {
+     "b": "JPMorgan",
+     "v": 8200,
+     "h": "fin 2027",
+     "d": "24/11/2026",
+     "s": [
+      [
+       "investingLive",
+       "https://investinglive.com/stock-market-update/jpmorgan-s-8-200-s-p-500-target-for-2027-sits-below-peers-as-fed-risk-tempers-ai-upside/"
+      ]
+     ]
+    },
+    {
+     "b": "UBS (Year Ahead 2027)",
+     "v": 8200,
+     "h": "fin 2027",
+     "d": "19/11/2026",
+     "s": [
+      [
+       "Investing.com",
+       "https://fr.investing.com/news/stock-market-news/ubs-adopte-une-position-neutre-sur-les-actions-mondiales-et-privilegie-la-zone-euro-3702277"
+      ]
+     ]
+    },
+    {
+     "b": "Wells Fargo",
+     "v": 8200,
+     "h": "fin 2027",
+     "d": "11/2026",
+     "s": [
+      [
+       "Yahoo Finance",
+       "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sends-signal-investors-150700390.html"
+      ]
+     ]
+    },
+    {
+     "b": "Bank of America",
+     "v": 8200,
+     "h": "fin 2027",
+     "d": "11/2026",
+     "s": [
+      [
+       "Beinsure",
+       "https://beinsure.com/news/us-stock-market-nasdaq-sp500-fall-ai-stocks-slide/"
+      ]
+     ]
+    }
+   ],
+   "med": "Sondage Reuters (42 stratégistes, 16-24/11): médiane 8 150 · consensus Bloomberg ≈ 8 470",
+   "meds": [
+    [
+     "Reuters via Investing.com",
+     "https://au.investing.com/news/stock-market-news/bruised-sp-500-seen-gaining-more-than-12-by-end2027-reuters-poll-4793947"
+    ],
+    [
+     "investingLive",
+     "https://investinglive.com/stock-market-update/jpmorgan-s-8-200-s-p-500-target-for-2027-sits-below-peers-as-fed-risk-tempers-ai-upside/"
+    ]
+   ],
+   "note": ""
+  },
+  {
+   "n": "Nasdaq 100",
+   "ref": 26214,
+   "refl": "clôture du 24/11",
+   "rows": [],
+   "med": "",
+   "note": "Aucune grande banque ne publie d'objectif sur le Nasdaq 100. À titre indicatif, NAGA convertit les objectifs S&P 500 de 8 300 à 8 800 en un Nasdaq 100 d'environ 31 650 à 33 560 (équivalent calculé, pas une cible bancaire).",
+   "meds": [
+    [
+     "NAGA",
+     "https://naga.com/en/news-and-analysis/articles/nasdaq-100-price-prediction"
+    ]
+   ]
+  }
+ ]
+}
