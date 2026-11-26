@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KomodoCap · Briefing du 26/11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300..700&family=Literata:opsz,wght@7..72,300..700&display=swap">
+<style>
+/* VOICE work: la feuille du matin d'un desk, dense et ordonnée
+   IDEA le "run sheet" imprimé qu'on distribue aux traders avant l'ouverture
+   PICTURE matrice importance × impact où chaque info est un point cliquable, à côté du briefing
+   COLOUR blanc, encre #10131a, bleu de Prusse pour l'importance, vert/carmin/ambre/gris pour l'impact
+   TYPE Literata (titres) + Inter (texte, chiffres)
+   LAYOUT laptop : briefing à gauche, matrice + chiffres à droite ; téléphone : briefing, matrice, chiffres, flux */
+:root{color-scheme:light dark;--deep:#0E2A2B;--sand:#EDE8D8;--bg:light-dark(#F3F5F1,#0B1B1C);--ink:light-dark(#14211F,#EDE8D8);--mute:light-dark(#51615E,#A9B8B3);--rule:light-dark(#D3DAD5,#244244);--panel:light-dark(#FFFFFF,#122A2B);--imp:light-dark(#0E2A2B,#7FC8C0);--impink:light-dark(#EDE8D8,#0B1B1C);--ember:#E4572E;--pos:light-dark(#1E7F5C,#4CC28F);--neg:light-dark(#C23B3B,#FF7A6E);--mix:light-dark(#B7791F,#E9B04F);--neu:light-dark(#6B7A77,#93A6A2);--dot:light-dark(#FFFFFF,#0B1B1C);--fd:"Source Serif 4",Georgia,serif}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+.kc,.kc-band{background-color:var(--deep);color:var(--sand);background-image:radial-gradient(circle at 100% 100%,transparent 0 11px,rgba(237,232,216,.09) 11.5px 12.5px,transparent 13px),radial-gradient(circle at 0 100%,transparent 0 11px,rgba(237,232,216,.09) 11.5px 12.5px,transparent 13px);background-size:28px 28px;background-position:0 0,14px 14px}
+.kc{background-image:linear-gradient(90deg,#0E2A2B 22%,rgba(14,42,43,.6) 62%,rgba(14,42,43,.15)),radial-gradient(circle at 100% 100%,transparent 0 11px,rgba(237,232,216,.11) 11.5px 12.5px,transparent 13px),radial-gradient(circle at 0 100%,transparent 0 11px,rgba(237,232,216,.11) 11.5px 12.5px,transparent 13px);background-size:100% 100%,28px 28px,28px 28px;background-position:0 0,0 0,14px 14px;background-repeat:no-repeat,repeat,repeat}
+.kc{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(calc((100% - 1240px)/2 + 4vw),16px);border-bottom:3px solid var(--ember);position:relative}
+.kc .brand{font-family:var(--fd);font-weight:700;font-size:23px;letter-spacing:-.01em;color:var(--sand);text-decoration:none}
+.kc .brand b{color:#F2A488;font-weight:600}
+.menu-btn{display:inline-flex;align-items:center;gap:9px;font:600 14px Inter,sans-serif;color:var(--sand);background:transparent;border:1.5px solid rgba(237,232,216,.5);border-radius:6px;padding:0 14px;min-height:44px;cursor:pointer}
+.menu-btn:hover{background:rgba(237,232,216,.1)}
+.menu-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+.menu-panel{position:absolute;right:max(calc((100% - 1240px)/2 + 4vw),16px);top:calc(100% + 8px);z-index:20;width:min(320px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:6px;display:flex;flex-direction:column;gap:2px;box-shadow:0 10px 30px rgba(14,42,43,.18)}
+.menu-panel[hidden]{display:none}
+.menu-panel a{display:flex;flex-direction:column;gap:1px;padding:11px 12px;border-radius:6px;color:var(--ink);text-decoration:none;font:600 16px var(--fd)}
+.menu-panel a span{font:400 12.5px Inter,sans-serif;color:var(--mute)}
+.menu-panel a:hover{background:color-mix(in srgb,var(--imp) 8%,transparent)}
+.menu-panel a[aria-current]{border-left:3px solid var(--ember);border-radius:0 6px 6px 0}
+:focus-visible{outline:3px solid var(--ember)!important;outline-offset:2px}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+a{color:light-dark(#0E5E5A,#7FC8C0)}
+.band{padding:clamp(20px,3vw,40px) max(4vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2{font-family:"Source Serif 4",Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,4.2vw,46px)}
+h2{font-size:clamp(22px,2.4vw,28px)}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;padding-bottom:6px}
+.ed{color:var(--mute);font-size:14px}
+.ed b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;margin-top:24px}
+.brief{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--ember);border-radius:10px;padding:clamp(18px,2.4vw,28px)}
+.brief .hd{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.brief .tag{font-size:14px;font-weight:600;color:var(--ember)}
+.brief h2{margin-top:4px}
+.brief ol{margin:16px 0 0;padding-left:1.3em}
+.brief li{margin:0 0 9px}
+.brief li::marker{font-weight:700;color:var(--ember)}
+.btn{font:600 14px Inter,sans-serif;min-height:44px;padding:0 16px;border-radius:6px;border:0;background:var(--ember);color:#fff;cursor:pointer}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--imp);outline-offset:2px}
+.btn.ok{background:var(--pos);border-color:var(--pos)}
+.lect{display:grid;grid-template-columns:repeat(auto-fit,minmax(13em,1fr));gap:10px;margin-top:18px}
+.lect div{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:14px}
+.lect b{display:block;font-size:15px}
+.vig{margin-top:16px;font-size:14px;border-top:1px solid var(--rule);padding-top:12px}
+.vig b{color:var(--neg)}
+.side{display:flex;flex-direction:column;gap:22px}
+.mx{display:grid;grid-template-columns:5.6em repeat(4,minmax(0,1fr));gap:4px;font-size:13px}
+.mx .h{font-weight:600;text-align:center;padding:2px 0 4px}
+.mx .r{font-weight:600;display:flex;align-items:center;color:var(--imp)}
+.cell{min-height:64px;border-radius:6px;padding:6px;display:flex;flex-wrap:wrap;gap:4px;align-content:flex-start}
+.cell.pos{background:color-mix(in srgb,var(--pos) 11%,transparent)}
+.cell.neg{background:color-mix(in srgb,var(--neg) 11%,transparent)}
+.cell.mix{background:color-mix(in srgb,var(--mix) 13%,transparent)}
+.cell.neu{background:color-mix(in srgb,var(--neu) 11%,transparent)}
+.dot{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 11px Inter,sans-serif;color:var(--dot);text-decoration:none}
+.dot.pos{background:var(--pos)}.dot.neg{background:var(--neg)}.dot.mix{background:var(--mix)}.dot.neu{background:var(--neu)}
+.note{font-size:13px;color:var(--mute);margin:6px 0 0}
+.tape{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.6em,1fr));border-top:1px solid var(--rule)}
+.tape>div{padding:8px 4px 8px 0;border-bottom:1px solid var(--rule);font-size:13px}
+.tape .v{font-size:17px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tape .c{font-weight:600}
+.up{color:var(--pos)}.dn{color:var(--neg)}.fl{color:var(--neu)}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 0}
+.grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--mute)}
+.chip{font:500 14px Inter,sans-serif;min-height:36px;padding:0 12px;border-radius:18px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--imp);color:var(--impink);border-color:var(--imp)}
+.sec{margin-top:30px}
+.sec h2{border-bottom:1px solid var(--rule);padding-bottom:8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sec h2 small{font:500 14px Inter,sans-serif;color:var(--mute)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,22em),1fr));gap:14px;margin-top:14px}
+.it{border:1px solid var(--rule);border-left:6px solid var(--neu);border-radius:8px;padding:14px 16px;background:var(--bg)}
+.it.pos{border-left-color:var(--pos);background:color-mix(in srgb,var(--pos) 5%,var(--bg))}
+.it.neg{border-left-color:var(--neg);background:color-mix(in srgb,var(--neg) 5%,var(--bg))}
+.it.mix{border-left-color:var(--mix);background:color-mix(in srgb,var(--mix) 6%,var(--bg))}
+.it:target{outline:3px solid var(--imp)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;margin-bottom:6px}
+.imp{font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap}
+.imp.i3{background:var(--imp);color:var(--impink)}
+.imp.i2{border:1.5px solid var(--imp);color:var(--imp)}
+.imp.i1{border:1px solid var(--rule);color:var(--mute)}
+.eff{font-weight:700;white-space:nowrap}
+.eff.pos{color:var(--pos)}.eff.neg{color:var(--neg)}.eff.mix{color:var(--mix)}.eff.neu{color:var(--neu)}
+.who{color:var(--mute)}
+.zone{font-size:12px;font-weight:600;padding:1px 7px;border-radius:4px;background:color-mix(in srgb,var(--imp) 10%,transparent);color:var(--imp);white-space:nowrap}
+.it h3{font:650 17px/1.3 Inter,sans-serif;margin:0 0 6px}
+.it p{margin:0;font-size:15px}
+.as{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.as span{font-size:13px;font-weight:600;border:1px solid var(--rule);border-radius:4px;padding:1px 7px;white-space:nowrap}
+.src{margin-top:10px;font-size:13px;color:var(--mute);overflow-wrap:anywhere}
+.note{overflow-wrap:anywhere}
+.src a{margin-right:10px}
+.empty{color:var(--mute);font-size:15px;padding:10px 0}
+table{border-collapse:collapse;width:100%;margin-top:12px;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:13px;color:var(--mute);font-weight:600}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+.leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--mute);margin-top:10px}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.arch{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.arch a{font:500 14px Inter,sans-serif;display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.arch a.cur{background:var(--imp);color:var(--impink);border-color:var(--imp)}
+.arch select{font:16px Inter,sans-serif;min-height:44px;border:1px solid var(--rule);border-radius:6px;background:var(--bg);color:var(--ink);padding:0 8px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,26em),1fr));gap:14px;margin-top:12px}
+.cidx{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;background:var(--panel)}
+.cidx h3{font:600 20px/1.2 var(--fd);margin:0 0 4px}
+.cidx .ref{font-size:13px;color:var(--mute)}
+.cidx table{margin-top:8px;font-size:14px}
+.cidx td.v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cidx td.u{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.cidx .med{margin-top:10px;font-size:14px;border-left:3px solid var(--ember);padding-left:10px}
+.cidx .cn{margin-top:8px;font-size:13.5px;color:var(--mute)}
+.cidx .src{margin-top:6px}
+#ag tr.ag3 td{background:light-dark(#FBE1DE,#4A2420)}
+#ag tr.ag2 td{background:light-dark(#FDECD4,#47341A)}
+#ag tr.hol td{background:light-dark(#0E2A2B,#1F5355);color:#EDE8D8;font-weight:600}
+#ag tr td{border-bottom:2px solid var(--bg)}
+.holb{display:inline-block;font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:4px;background:#EDE8D8;color:#0E2A2B;white-space:nowrap}
+footer{color:var(--mute);font-size:13px;border-top:1px solid var(--rule);margin-top:34px;padding-top:12px}
+.brief .tag,.brief ol,#bh{font-family:Literata,Georgia,serif}
+.brief ol{font-size:17px;font-weight:300}
+@media(max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){table{font-size:13px}th,td{padding:6px 4px}.stack thead{display:none}.stack tr{display:grid;padding-block:8px;border-bottom:1px solid var(--rule)}.stack td{border:0;padding:2px 0}.mx{grid-template-columns:4.2em repeat(4,minmax(0,1fr))}.dot{width:22px;height:22px;font-size:10px}}
+@media print{.bar,.btn{display:none}.it{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="kc"><a class="brand" href="./">KomodoCap <b>· Briefing</b></a><div><button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button><nav class="menu-panel" id="menuPanel" aria-label="Pages" hidden><a href="./">Sommaire<span>Dernière édition et archives par mois</span></a><a aria-current="page" id="mToday" href="./">Briefing du jour<span>Banques centrales, macro, news et sources</span></a><a href="./#consensus">Consensus des banques<span>Objectifs Euro Stoxx 50, Stoxx 600, S&amp;P 500, Nasdaq 100</span></a><a href="./#taux">Probabilités de taux<span>Fed et BCE: hausse, maintien, baisse par réunion</span></a></nav></div></div>
+<header class="band" style="padding-bottom:0">
+ <div class="wrap">
+  <div class="top">
+   <div>
+    <div class="ed" id="ed"></div>
+    <h1 id="ttl"></h1>
+   </div>
+   <div class="ed" style="text-align:right"><div id="ver"></div><a href="./">Sommaire</a> · <a href="#archives">Briefings précédents</a></div>
+  </div>
+  <div class="grid">
+   <section class="brief" aria-labelledby="bh">
+    <div class="hd">
+     <div><div class="tag">Briefing aux traders · à lire avant 7h30</div><h2 id="bh"></h2></div>
+     <button class="btn" id="cp" type="button">Copier le briefing</button>
+    </div>
+    <ol id="pts"></ol>
+    <div class="lect" id="lect"></div>
+    <div class="vig" id="vig"></div>
+   </section>
+   <div class="side">
+    <section aria-label="Matrice importance et impact">
+     <h2 style="font-size:20px">Toutes les infos du jour en un coup d'œil</h2>
+     <p class="note">Ligne = importance, colonne = impact sur le risque (actions européennes). Cliquez un point pour lire l'info.</p>
+     <div class="mx" id="mx" style="margin-top:10px"></div>
+    </section>
+    <section aria-label="Chiffres de marché">
+     <h2 style="font-size:20px">Marchés avant l'ouverture</h2>
+     <div class="tape" id="tape" style="margin-top:10px"></div>
+     <p class="note" id="tapen"></p>
+    </section>
+   </div>
+  </div>
+ </div>
+</header>
+<nav class="bar" aria-label="Filtres">
+ <div class="wrap" style="padding-inline:max(4vw,16px)">
+  <div class="grp" id="fi">Importance</div>
+  <div class="grp" id="fe">Impact</div>
+  <div class="grp" id="fz">Marchés</div>
+ </div>
+</nav>
+<main class="band" style="padding-top:0">
+ <div class="wrap" id="secs"></div>
+ <div class="wrap sec">
+  <h2>Agenda du jour <small>heure de Paris</small></h2>
+  <table class="stack"><thead><tr><th>Heure</th><th>Événement</th><th>Importance</th><th>Note</th></tr></thead><tbody id="ag"></tbody></table>
+ </div>
+ <div class="wrap sec" id="consensus">
+  <h2>Consensus des banques sur les indices</h2>
+  <p class="cn" id="consjour"></p>
+  <p><a href="./#consensus">Voir les objectifs des banques sur l'Euro Stoxx 50, le Stoxx 600, le S&amp;P 500 et le Nasdaq 100 sur le sommaire →</a></p>
+ </div>
+ <div class="wrap sec" id="archives">
+  <h2>Briefings précédents <small id="archn"></small></h2>
+  <div class="arch" id="arch"></div>
+ </div>
+ <div class="wrap">
+  <div class="leg"><span><i style="background:var(--pos)"></i>Positif pour le risque</span><span><i style="background:var(--neg)"></i>Négatif pour le risque</span><span><i style="background:var(--mix)"></i>Mitigé</span><span><i style="background:var(--neu)"></i>Neutre / à surveiller</span><span>▲ ▼ = sens attendu du prix de l'actif</span></div>
+  <footer id="ft"></footer>
+ </div>
+</main>
+
+<script type="application/json" id="data">
+{
+ "date": "Jeudi 26 novembre 2026",
+ "edition": "Édition de secours publiée vers 7h45 (heure de Paris); données de la nuit jusqu'à 7h15",
+ "titre": "Wall Street efface son krach intraday, l'Asie rebondit et la Corée relève ses taux",
+ "briefing": {
+  "titre": "Rebond de soulagement après une séance US folle: tarifs 301 proposés, la Fed pricée à 98 % et Thanksgiving vide les marchés",
+  "points": [
+   "Wall Street: krach intraday effacé, S&P 500 −0,25 % à 7 183 (−3,2 % au pire), Nasdaq −0,62 % (−4,6 % au pire), Dow +0,33 % au-dessus de 50 000; Nvidia −3,9 %, note AA sous surveillance négative chez S&P.",
+   "Asie en net rebond ce matin: Hang Seng +2,5 %, Taïwan +2,0 %, Nikkei +1,5 %, Kospi +1,2 %, Shanghai +0,5 %. L'Europe avait clôturé avant le redressement US (DAX −1,1 %, CAC −0,75 %): rattrapage possible.",
+   "Macro US chaude: PCE sous-jacent 3,3 % (3,2 % attendu), PIB T3 révisé à 4,3 % (3,5 %), inscriptions au chômage 189 K (200 K), logements neufs 701 K (650 K). Hausse de la Fed en décembre pricée à environ 98 %; Beige Book: pressions sur les coûts qui s'élargissent.",
+   "Tarifs: l'USTR propose des droits section 301 sur 14 partenaires: Chine 20 % (jusqu'à 40 %), UE, Japon et Corée autour de 15 %, pas avant janvier. Pékin dénonce une « manœuvre politique ».",
+   "Banques centrales: la Banque de Corée relève à 3,25 % (5-2); Sleijpen confirme la hausse BCE de décembre, compte rendu d'octobre à 13h30 et Lagarde dans la journée; Bailey moins inquiet sur l'inflation britannique; Tamura (BoJ) parle ce matin.",
+   "Chine: fixing à 6,7096 (6,7088 la veille), toujours loin des estimations; CSI 300 au plus bas depuis juin 2025 mercredi, Xiaomi −57 % de bénéfice ajusté; Huawei condamné aux États-Unis.",
+   "Ormuz: nouveaux tankers touchés, Houthis contre Riyad; Brent 94,61 $ (+3,5 %), WTI 83,68 $ (+2,0 %). Or sous 3 500 $ en séance, cuivre −2,1 %, bitcoin vers 60 800 $.",
+   "Taux: Bund 10 ans 3,222 % (−5,9 pb), UST 10 ans 4,845 %, 2 ans 4,633 %. EUR/USD 1,0983, USD/JPY 159,1 en zone d'intervention.",
+   "Thanksgiving: marchés américains fermés aujourd'hui, séance raccourcie vendredi; liquidité très faible en Europe."
+  ],
+  "lecture": [
+   {
+    "a": "FESX",
+    "b": "Rebond technique à l'ouverture",
+    "t": "Rattrapage du redressement de Wall Street et de l'Asie, mais liquidité Thanksgiving et menace tarifaire sur les exportateurs: rebond fragile."
+   },
+   {
+    "a": "Bund",
+    "b": "Neutre",
+    "t": "Détente de 6 pb mercredi; le pétrole en hausse et le compte rendu BCE limitent la marge de progression."
+   },
+   {
+    "a": "Schatz / Bobl",
+    "b": "Sous pression",
+    "t": "Hausse de décembre acquise à la BCE et compte rendu d'octobre à 13h30: le court terme reste vendeur."
+   },
+   {
+    "a": "EUR/USD",
+    "b": "Range 1,0950–1,1000",
+    "t": "Sans les États-Unis, peu de catalyseurs; le compte rendu BCE peut soutenir l'euro."
+   }
+  ],
+  "vigilance": "Ormuz et Mer Rouge (pétrole), réactions européennes et chinoises aux tarifs 301, compte rendu BCE à 13h30 et Lagarde, Tamura (BoJ) et USD/JPY à 159, liquidité Thanksgiving."
+ },
+ "tape": [
+  {
+   "n": "S&P 500",
+   "v": "7 183",
+   "c": "−0,25 %",
+   "d": "dn"
+  },
+  {
+   "n": "Nasdaq Comp.",
+   "v": "23 586",
+   "c": "−0,62 %",
+   "d": "dn"
+  },
+  {
+   "n": "Dow Jones",
+   "v": "50 183",
+   "c": "+0,33 %",
+   "d": "up"
+  },
+  {
+   "n": "Russell 2000",
+   "v": "2 704",
+   "c": "+0,71 %",
+   "d": "up"
+  },
+  {
+   "n": "VIX",
+   "v": "28,3",
+   "c": "+7,3 %",
+   "d": "up"
+  },
+  {
+   "n": "EUR/USD",
+   "v": "1,0983",
+   "c": "+0,17 %",
+   "d": "up"
+  },
+  {
+   "n": "DXY",
+   "v": "103,62",
+   "c": "−0,22 %",
+   "d": "dn"
+  },
+  {
+   "n": "USD/JPY",
+   "v": "159,13",
+   "c": "—",
+   "d": "fl"
+  },
+  {
+   "n": "GBP/USD",
+   "v": "≈ 1,31",
+   "c": "—",
+   "d": "fl"
+  },
+  {
+   "n": "UST 2 ans",
+   "v": "4,633 %",
+   "c": "—",
+   "d": "fl"
+  },
+  {
+   "n": "UST 10 ans",
+   "v": "4,845 %",
+   "c": "−6 pb",
+   "d": "dn"
+  },
+  {
+   "n": "Bund 10 ans",
+   "v": "3,222 %",
+   "c": "−5,9 pb",
+   "d": "dn"
+  },
+  {
+   "n": "WTI janv.",
+   "v": "83,68 $",
+   "c": "+2,0 %",
+   "d": "up"
+  },
+  {
+   "n": "Brent janv.",
+   "v": "94,61 $",
+   "c": "+3,5 %",
+   "d": "up"
+  },
+  {
+   "n": "Or (fut.)",
+   "v": "3 534 $",
+   "c": "−0,6 %",
+   "d": "dn"
+  },
+  {
+   "n": "Cuivre",
+   "v": "5,256 $/lb",
+   "c": "−2,1 %",
+   "d": "dn"
+  },
+  {
+   "n": "Bitcoin",
+   "v": "≈ 60 800 $",
+   "c": "+3,0 %",
+   "d": "up"
+  },
+  {
+   "n": "Nikkei 225",
+   "v": "57 887",
+   "c": "+1,54 %",
+   "d": "up"
+  },
+  {
+   "n": "Hang Seng",
+   "v": "22 525",
+   "c": "+2,54 %",
+   "d": "up"
+  },
+  {
+   "n": "Shanghai Comp.",
+   "v": "3 495",
+   "c": "+0,53 %",
+   "d": "up"
+  },
+  {
+   "n": "Kospi",
+   "v": "4 751",
+   "c": "+1,15 %",
+   "d": "up"
+  },
+  {
+   "n": "USD/CNY fixing",
+   "v": "6,7096",
+   "c": "vs 6,7088 préc.",
+   "d": "fl"
+  }
+ ],
+ "tapeNote": "Actions US, taux, change et matières premières: clôture de mercredi (or: futures; cuivre: clôture européenne). Asie: niveaux de la matinée de jeudi vers 3h40 heure de Paris. Futures américains non communiqués. Sources: GSM Global, TradingKey, investingLive, The Library, The Edge, Peter Lewis.",
+ "tapeSrc": [
+  {
+   "t": "GSM Global – clôture US 25/11",
+   "u": "https://gsmglobalnews.com/article/d20261125-mktclose1.html"
+  },
+  {
+   "t": "TradingKey – recap US 25/11",
+   "u": "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+  },
+  {
+   "t": "investingLive – clôture Europe 25/11",
+   "u": "https://investinglive.com/stocks/european-stocks-close-lower-as-the-nasdaq-100-sheds-nearly-4/"
+  },
+  {
+   "t": "The Edge – Asia Market Wrap 26/11",
+   "u": "https://edgeconsultancykw.com/asia-market-wrap-26-november-2026/"
+  },
+  {
+   "t": "The Library – FX Day Open 26/11",
+   "u": "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+  },
+  {
+   "t": "TMGM – fixing PBoC 26/11",
+   "u": "https://www.tmgm.com/en/analysis/market-news/article/pboc-sets-usd-cny-reference-rate-at-67096-vs-67088-previous-202611260115"
+  }
+ ],
+ "sections": [
+  {
+   "id": "bc-eu",
+   "t": "Banques centrales · Europe"
+  },
+  {
+   "id": "bc-us",
+   "t": "Banques centrales · États-Unis"
+  },
+  {
+   "id": "bc-cn",
+   "t": "Banques centrales · Chine"
+  },
+  {
+   "id": "bc-rdm",
+   "t": "Banques centrales · Reste du monde"
+  },
+  {
+   "id": "macro",
+   "t": "Chiffres macro"
+  },
+  {
+   "id": "news",
+   "t": "Marchés, géopolitique et valeurs"
+  },
+  {
+   "id": "banques",
+   "t": "Commentaires de banques et de brokers"
+  }
+ ],
+ "items": [
+  {
+   "cat": "bc-eu",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "BCE · Olaf Sleijpen",
+   "t": "Sleijpen: la BCE devrait relever ses taux en décembre",
+   "p": "Le gouverneur néerlandais confirme le scénario d'une hausse le 17 décembre, dans la lignée du chœur hawkish de la semaine. Le compte rendu de la réunion d'octobre est publié à 13h30 et Christine Lagarde doit s'exprimer aujourd'hui (horaire non communiqué).",
+   "as": [
+    [
+     "Schatz",
+     "dn"
+    ],
+    [
+     "EUR",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-eu",
+   "imp": 2,
+   "eff": "mix",
+   "z": [
+    "eu"
+   ],
+   "who": "BoE · Andrew Bailey",
+   "t": "Bailey: l'inflation britannique pourrait monter moins que prévu si les prix de l'énergie se stabilisent",
+   "p": "Un ton moins alarmiste que celui de Megan Greene la veille, qui jugeait la politique « légèrement en retard ». Cable autour de 1,31.",
+   "as": [
+    [
+     "GBP",
+     "fl"
+    ],
+    [
+     "Gilts",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ],
+    [
+     "Newsquawk – EU Market Open 25/11",
+     "https://www.newsquawk.com/daily/5876-eu-market-open-us-is-expected-to-honour-previous-trade-agreements-european-bourses-set-for-a-slightly-firmer-open"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-eu",
+   "imp": 1,
+   "eff": "neu",
+   "z": [
+    "eu"
+   ],
+   "who": "Taux souverains européens",
+   "t": "Détente des rendements européens mercredi: Bund 10 ans 3,222 % (−5,9 pb)",
+   "p": "OAT 4,737 % (−4,8 pb), Bonos 3,849 % (−3,5 pb), BTP 4,358 % (−0,6 pb): l'écart Italie–Allemagne s'élargit de 5,3 pb. Gilt 10 ans 5,136 % (−5,8 pb).",
+   "as": [
+    [
+     "Bund",
+     "up"
+    ],
+    [
+     "BTP",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – clôture Europe 25/11",
+     "https://investinglive.com/stocks/european-stocks-close-lower-as-the-nasdaq-100-sheds-nearly-4/"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-us",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "Fed · FedWatch",
+   "t": "Hausse de décembre quasi acquise: environ 98 % selon le CME FedWatch",
+   "p": "Après un PCE sous-jacent à 3,3 % et un PIB révisé à 4,3 %, le marché valide une hausse de 25 pb les 8 et 9 décembre (fourchette 3,75–4,00 % actuellement).",
+   "as": [
+    [
+     "UST 2 ans",
+     "dn"
+    ],
+    [
+     "USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ],
+    [
+     "GSM Global – clôture US 25/11",
+     "https://gsmglobalnews.com/article/d20261125-mktclose1.html"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-us",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "Fed · Beige Book",
+   "t": "Beige Book: pressions sur les coûts persistantes et qui s'élargissent",
+   "p": "Énergie, transport, santé, assurance et droits de douane: les entreprises s'attendent à ce que coûts et prix continuent de monter. Dernière photographie avant le FOMC.",
+   "as": [
+    [
+     "UST",
+     "dn"
+    ],
+    [
+     "USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-cn",
+   "imp": 2,
+   "eff": "neu",
+   "z": [
+    "cn"
+   ],
+   "who": "PBoC · fixing",
+   "t": "Fixing USD/CNY à 6,7096, contre 6,7088 la veille",
+   "p": "Léger affaiblissement du point médian après le plus fort niveau depuis 2022 mercredi; l'écart avec l'estimation de marché (6,6559 mercredi) reste très large, signe que la banque centrale freine l'appréciation. Yuan offshore juste au-delà de 6,67.",
+   "as": [
+    [
+     "CNY",
+     "fl"
+    ],
+    [
+     "CNH",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "TMGM/FXStreet – fixing PBoC 26/11",
+     "https://www.tmgm.com/en/analysis/market-news/article/pboc-sets-usd-cny-reference-rate-at-67096-vs-67088-previous-202611260115"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-rdm",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Banque de Corée",
+   "t": "La Banque de Corée relève son taux de 25 pb à 3,25 %, vote 5-2",
+   "p": "Hausse attendue (32 économistes sur 34 dans le sondage Reuters). Deux membres (Hwang Kunil, Lee Soohyung) voulaient maintenir 3,00 %. Croissance relevée à 3,9 % en 2026 (3,3 %) et 4,1 % en 2027 (2,9 %); inflation 2,7 % en 2026 et 2,4 % en 2027. Le communiqué évoque le « calendrier » de nouvelles hausses et les risques immobiliers à Séoul.",
+   "as": [
+    [
+     "KRW",
+     "up"
+    ],
+    [
+     "Kospi",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "The Edge – décision BoK",
+     "https://edgeconsultancykw.com/bok-rate-decision-november-2026/"
+    ],
+    [
+     "investingLive – agenda Asie 26/11",
+     "https://investinglive.com/central-banks/economic-and-event-calendar-in-asia-thursday-november-26-2026-bok-boj-turkey-later/"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-rdm",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "BoJ · Naoki Tamura",
+   "t": "Le faucon Tamura s'exprime ce matin; 61 économistes sur 71 voient la BoJ à 1,5 % en décembre",
+   "p": "Le discours de Tamura à Yamanashi (2h00 heure de Paris) est scruté avant la réunion des 17 et 18 décembre (taux actuel 1,25 %, selon le sondage Reuters). USD/JPY vers 159,1, zone de vigilance sur une intervention. Tokyo CPI de novembre vendredi à 0h30.",
+   "as": [
+    [
+     "JPY",
+     "up"
+    ],
+    [
+     "JGB",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – agenda Asie 26/11",
+     "https://investinglive.com/central-banks/economic-and-event-calendar-in-asia-thursday-november-26-2026-bok-boj-turkey-later/"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "bc-rdm",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "BoC · Tiff Macklem",
+   "t": "Macklem ouvre la porte à une hausse: Nomura, CIBC et BMO la voient dès décembre",
+   "p": "Le gouverneur canadien juge que les entreprises répercutent davantage les coûts (effet de second tour du choc pétrolier) et que l'économie a besoin de moins de soutien. Les swaps sont passés de 65 % à 80 % de probabilité de hausse en décembre; Nomura avance son appel de janvier à décembre.",
+   "as": [
+    [
+     "CAD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Macklem",
+     "https://www.financialjuice.com/News/9866454/BoCs-Gov-Macklem-Businesses-are-set-to-pass-through-more-costs-to-consumers-and-this-second-round-effect-of-the-oil-shock-will-add-to-inflation-persistence.aspx"
+    ],
+    [
+     "FinancialJuice – Nomura sur la BoC",
+     "https://www.financialjuice.com/News/9866667/Nomura-We-see-the-BOC-to-hike-in-December-previous-forecast-was-January.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "États-Unis · PCE d'octobre",
+   "t": "PCE sous-jacent 3,3 % sur un an (3,2 % attendu, 3,1 % précédent)",
+   "p": "Sur un mois: +0,3 % en ligne. Inflation totale 3,8 % sur un an (3,8 % attendu, 3,6 % précédent), +0,3 % sur un mois.",
+   "as": [
+    [
+     "UST",
+     "dn"
+    ],
+    [
+     "USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – PCE",
+     "https://investinglive.com/news/us-october-pce-core-inflation-m-m-vs-0-3-expected/"
+    ],
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 3,
+   "eff": "mix",
+   "z": [
+    "us"
+   ],
+   "who": "États-Unis · PIB T3 (2e estimation)",
+   "t": "Le PIB du T3 révisé à 4,3 % annualisé (3,5 % attendu, 3,4 % en première estimation)",
+   "p": "Révision massive à la hausse; les profits des entreprises progressent de 206 Md$. Une économie qui surchauffe conforte la Fed dans sa hausse de décembre.",
+   "as": [
+    [
+     "USD",
+     "up"
+    ],
+    [
+     "UST",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – PIB T3",
+     "https://investinglive.com/news/us-gdp-2nd-estimate-for-the-3rd-quarter-3-5-vs-3-5-estimate/"
+    ],
+    [
+     "GSM Global – clôture US 25/11",
+     "https://gsmglobalnews.com/article/d20261125-mktclose1.html"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "États-Unis · emploi et immobilier",
+   "t": "Inscriptions au chômage 189 K (200 K attendu); ventes de logements neufs 701 K (650 K attendu)",
+   "p": "Inscriptions continues 1,697 M (1,721 M attendu). Marché du travail toujours tendu. Adjudication de 44 Md$ à 7 ans servie à 4,708 % (4,698 % en when-issued), légèrement en queue.",
+   "as": [
+    [
+     "UST",
+     "dn"
+    ],
+    [
+     "USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – inscriptions au chômage",
+     "https://investinglive.com/news/us-initial-jobless-claims-200k-vs-200k-estimate-continuing-claim-1-721m-vs-1-721m-estimate/"
+    ],
+    [
+     "investingLive – logements neufs",
+     "https://investinglive.com/news/october-new-home-sales-701k-vs-650k/"
+    ],
+    [
+     "investingLive – adjudication 7 ans",
+     "https://investinglive.com/news/us-treasury-sells-44-billion-of-70-or-notes-at-a-high-yield-of-4-708/"
+    ]
+   ]
+  },
+  {
+   "cat": "macro",
+   "imp": 2,
+   "eff": "pos",
+   "z": [
+    "rdm"
+   ],
+   "who": "Australie · investissement",
+   "t": "Dépenses d'investissement privées du T3: +12,2 % (4,4 % attendu, −2,0 % révisé)",
+   "p": "Une surprise très forte qui s'ajoute à l'inflation d'octobre à 4,9 % et renforce le camp hawkish à la RBA. AUD/USD vers 0,6628.",
+   "as": [
+    [
+     "AUD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "ActionForex – Eco Data 26/11",
+     "https://www.actionforex.com/economic-calendar/661597-eco-data-11-26-26/"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "mix",
+   "z": [
+    "us"
+   ],
+   "who": "Wall Street · clôture de mercredi",
+   "t": "Wall Street efface un krach intraday: le Dow finit +0,33 % après −1 100 points",
+   "p": "S&P 500 7 182,78 (−0,25 %), Nasdaq Composite 23 585,80 (−0,62 %), Dow 50 182,95 (+0,33 %), Russell 2000 +0,71 %. Le S&P a perdu jusqu'à 3,2 % et le Nasdaq 4,6 % en séance; le Nasdaq 100 a touché le territoire baissier (−20 % du pic d'octobre). VIX 28,3. Environ trois quarts des valeurs du S&P ont fini en hausse.",
+   "as": [
+    [
+     "S&P 500",
+     "fl"
+    ],
+    [
+     "Nasdaq",
+     "dn"
+    ],
+    [
+     "Dow",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "GSM Global – clôture US 25/11",
+     "https://gsmglobalnews.com/article/d20261125-mktclose1.html"
+    ],
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us",
+    "eu"
+   ],
+   "who": "Nvidia · IA",
+   "t": "Nvidia −3,9 % à 149,30 $ après −9 % en séance; S&P place sa note AA sous surveillance négative",
+   "p": "Le retour de Jensen Huang et les accusations sur les exportations vers la Chine pèsent. Oracle −5,1 % (plus bas annuel), Micron −4,5 %, SanDisk −5,6 %; à l'inverse HP +11,5 %, Meta +3,4 %, Deere +4,4 %. Le CDS 5 ans de CoreWeave grimpe: les doutes sur le financement de l'IA persistent.",
+   "as": [
+    [
+     "Semi-conducteurs",
+     "dn"
+    ],
+    [
+     "ASML",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "GSM Global – clôture US 25/11",
+     "https://gsmglobalnews.com/article/d20261125-mktclose1.html"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "us",
+    "eu",
+    "cn",
+    "rdm"
+   ],
+   "who": "Washington · tarifs section 301",
+   "t": "L'USTR propose des droits section 301 sur 14 partenaires, dont la Chine et l'UE",
+   "p": "Chine: 20 %, jusqu'à 40 % si Pékin rompt la trêve. UE, Japon, Corée: environ 15 % selon TradingKey (Yahoo évoque 20 %), avec exemptions; Inde jusqu'à 17 %. Mise en œuvre après consultation, pas avant janvier. Réaction de marché limitée; le représentant au Commerce Jamieson Greer défend la mesure.",
+   "as": [
+    [
+     "Exportateurs UE",
+     "dn"
+    ],
+    [
+     "Automobile",
+     "dn"
+    ],
+    [
+     "CNH",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "eu"
+   ],
+   "who": "Europe · clôture de mercredi",
+   "t": "L'Europe a clôturé avant le rebond américain: DAX −1,14 %, FTSE MIB −1,81 %, Ibex −2,00 %",
+   "p": "CAC 40 7 980,57 (−0,75 %), DAX 24 733,21, FTSE MIB 47 249,14, Ibex 18 635,80, FTSE 100 10 426,95 (−0,38 %). Wall Street a ensuite fortement réduit ses pertes: rattrapage possible à l'ouverture.",
+   "as": [
+    [
+     "FESX",
+     "up"
+    ],
+    [
+     "DAX",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – clôture Europe 25/11",
+     "https://investinglive.com/stocks/european-stocks-close-lower-as-the-nasdaq-100-sheds-nearly-4/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "pos",
+   "z": [
+    "cn",
+    "rdm"
+   ],
+   "who": "Asie · séance de jeudi",
+   "t": "Rebond net en Asie: Hang Seng +2,5 %, Taïwan +2,0 %, Nikkei +1,5 %",
+   "p": "Vers 3h40 heure de Paris: Hang Seng 22 525 (+2,54 %), Taiex 38 959 (+2,00 %), Nikkei 57 887 (+1,54 %), Kospi 4 751 (+1,15 %), ASX 200 8 774 (+0,94 %), Shanghai 3 495 (+0,53 %). Mercredi, le Kospi avait chuté de 6,2 % (SK Hynix −11 %, Samsung −10 %) et le Nikkei de 2,8 %.",
+   "as": [
+    [
+     "Hang Seng",
+     "up"
+    ],
+    [
+     "Nikkei",
+     "up"
+    ],
+    [
+     "Kospi",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "The Edge – Asia Market Wrap 26/11",
+     "https://edgeconsultancykw.com/asia-market-wrap-26-november-2026/"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "cn",
+    "us"
+   ],
+   "who": "Chine · Pékin",
+   "t": "Pékin dénonce une « manœuvre politique » et rejette l'accusation de surcapacité",
+   "p": "Les analystes attendent des protestations plutôt que des représailles tant que le plafond de 20 % négocié à Busan tient. La trêve commerciale expire le 10 janvier; Xi et Trump devraient se voir au G20 des 14 et 15 décembre.",
+   "as": [
+    [
+     "CNH",
+     "fl"
+    ],
+    [
+     "Hang Seng",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ],
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "cn"
+   ],
+   "who": "Chine · actions et entreprises",
+   "t": "Mercredi noir pour la tech chinoise: CSI 300 −1,7 % au plus bas depuis juin 2025, ChiNext −4,2 %",
+   "p": "Hang Seng −1,1 % à 21 966 et Hang Seng Tech −2,6 % (−38,8 % depuis janvier). Xiaomi: bénéfice net ajusté du T3 −56,8 % à 4,88 Md de yuans. Le secrétaire du Parti de Shanghai, Chen Jining, fait l'objet d'une enquête.",
+   "as": [
+    [
+     "Tech chinoise",
+     "dn"
+    ],
+    [
+     "Luxe",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "cn",
+    "us"
+   ],
+   "who": "Chine–États-Unis · technologie",
+   "t": "Huawei condamné aux États-Unis sur 10 chefs d'accusation sur 12",
+   "p": "Dont complot de vol de secrets industriels et fraude bancaire, dans un dossier lié à l'Iran. Washington durcit aussi les licences d'export de puces et de centres de données vers l'Asie du Sud-Est.",
+   "as": [
+    [
+     "Semi-conducteurs",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Huawei condamné",
+     "https://www.financialjuice.com/News/9866660/Chinas-Huawei-convicted-at-US-criminal-trial-on-10-of-12-counts-including-conspiracy-to-steal-trade-secrets-and-bank-fraud.aspx"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 3,
+   "eff": "neg",
+   "z": [
+    "eu",
+    "rdm"
+   ],
+   "who": "Iran · Ormuz",
+   "t": "Ormuz reste bloqué: nouveaux tankers touchés par des mines, les Houthis visent Riyad",
+   "p": "L'Iran affirme que d'autres pétroliers ont heurté des mines depuis mardi. Brent janvier réglé à 94,61 $ (+3,5 %) et WTI à 83,68 $ (+2,0 %) mercredi; les sources divergent sur la séance asiatique (Reuters donnait le Brent vers 89,9 $).",
+   "as": [
+    [
+     "Brent",
+     "up"
+    ],
+    [
+     "Pétrolières",
+     "up"
+    ],
+    [
+     "Compagnies aériennes",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ],
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "FinancialJuice – Ormuz",
+     "https://www.financialjuice.com/News/9867167/Iran-revolutionary-guards-navy-two-tankers-blaze-on-unauthorized-route-through-Strait-of-Hormuz---state-media.aspx"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "mix",
+   "z": [
+    "us",
+    "eu"
+   ],
+   "who": "Matières premières et crypto",
+   "t": "Or sous 3 500 $ en séance, cuivre −2,1 %, bitcoin vers 60 800 $",
+   "p": "L'or a enfoncé 3 500 $ avant de se reprendre (clôture des futures 3 534 $, −0,6 %). Cuivre à 5,256 $/lb (−2,1 %), argent sous 39 $ au plus bas. Bitcoin remonté vers 60 800 $ (+3 %) après 58 300 $.",
+   "as": [
+    [
+     "Or",
+     "dn"
+    ],
+    [
+     "Minières",
+     "dn"
+    ],
+    [
+     "Bitcoin",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ],
+    [
+     "investingLive – clôture Europe 25/11",
+     "https://investinglive.com/stocks/european-stocks-close-lower-as-the-nasdaq-100-sheds-nearly-4/"
+    ],
+    [
+     "Yahoo Finance – live 25/11",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 2,
+   "eff": "neu",
+   "z": [
+    "us",
+    "eu"
+   ],
+   "who": "Liquidité · Thanksgiving",
+   "t": "Marchés américains fermés aujourd'hui, séance raccourcie vendredi",
+   "p": "Actions et Treasuries fermés jeudi; vendredi, clôture des actions à 19h00 et du marché obligataire à 20h00 (heure de Paris, recommandation SIFMA). Liquidité très réduite en Europe, mouvements exagérés possibles.",
+   "as": [
+    [
+     "FESX",
+     "fl"
+    ],
+    [
+     "EUR/USD",
+     "fl"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – agenda Asie 26/11",
+     "https://investinglive.com/central-banks/economic-and-event-calendar-in-asia-thursday-november-26-2026-bok-boj-turkey-later/"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "news",
+   "imp": 1,
+   "eff": "neu",
+   "z": [
+    "eu"
+   ],
+   "who": "Change · refuge",
+   "t": "Les flux de refuge se tournent vers le franc suisse",
+   "p": "Pendant la chute de Wall Street, le dollar a reculé de 0,63 % face au CHF (USD/CHF 0,83). EUR/USD termine à 1,0983 (+0,17 %), DXY 103,62.",
+   "as": [
+    [
+     "CHF",
+     "up"
+    ],
+    [
+     "EUR/USD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – flux vers le CHF",
+     "https://investinglive.com/technical-analysis/as-us-stocks-continue-to-fall-the-flow-of-funds-is-leaning-into-the-relative-safety-of-the-chf/"
+    ],
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Goldman Sachs · Corée",
+   "t": "Goldman évoquait un possible « hawkish hold » à la BoK",
+   "p": "La Banque de Corée a finalement relevé ses taux, comme l'attendait le consensus: un signal plus dur que le scénario de Goldman.",
+   "as": [
+    [
+     "KRW",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+    ],
+    [
+     "The Edge – décision BoK",
+     "https://edgeconsultancykw.com/bok-rate-decision-november-2026/"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 2,
+   "eff": "pos",
+   "z": [
+    "us"
+   ],
+   "who": "Citi · volatilité",
+   "t": "Citi: la peur est extrême, mais les actions ont progressé après 13 des 14 derniers pics du VIX à 40",
+   "p": "Lecture contrariante après la séance de mercredi; Goldman note de son côté que les hedge funds accumulent les positions vendeuses, les shorts sur ETF bondissant de 19 points sur une semaine.",
+   "as": [
+    [
+     "S&P 500",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "investingLive – clôture Europe 25/11",
+     "https://investinglive.com/stocks/european-stocks-close-lower-as-the-nasdaq-100-sheds-nearly-4/"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 2,
+   "eff": "neg",
+   "z": [
+    "rdm"
+   ],
+   "who": "Nomura, CIBC, BMO · Canada",
+   "t": "Trois banques voient désormais la BoC relever ses taux en décembre",
+   "p": "Nomura avance son appel (janvier auparavant), CIBC et BMO s'alignent après les propos de Macklem.",
+   "as": [
+    [
+     "CAD",
+     "up"
+    ]
+   ],
+   "s": [
+    [
+     "FinancialJuice – Nomura sur la BoC",
+     "https://www.financialjuice.com/News/9866667/Nomura-We-see-the-BOC-to-hike-in-December-previous-forecast-was-January.aspx"
+    ],
+    [
+     "FinancialJuice – CIBC",
+     "https://www.financialjuice.com/News/9866576/CIBC-expects-the-Bank-of-Canada-to-hike-in-December.aspx"
+    ]
+   ]
+  },
+  {
+   "cat": "banques",
+   "imp": 1,
+   "eff": "neg",
+   "z": [
+    "us"
+   ],
+   "who": "S&P Global · Nvidia",
+   "t": "S&P met la note AA de Nvidia sous surveillance négative",
+   "p": "Une dégradation d'un cran est possible, dans le sillage des accusations visant le PDG et des doutes sur le financement de l'IA.",
+   "as": [
+    [
+     "Nvidia",
+     "dn"
+    ]
+   ],
+   "s": [
+    [
+     "TradingKey – recap US 25/11",
+     "https://www.tradingkey.com/analysis/stocks/us-stocks/262322956-market-recap-sp-nasdaq-nvidia-pce-gold-breaks-3500-tradingkey"
+    ],
+    [
+     "Peter Lewis – Asian Business Briefing",
+     "https://peterlewismoneytalk.substack.com/p/peters-asian-business-and-finance-d91"
+    ]
+   ]
+  }
+ ],
+ "agenda": [
+  {
+   "h": "01:30",
+   "e": "Australie: dépenses d'investissement privées T3",
+   "i": 2,
+   "n": "Publié: +12,2 % (consensus 4,4 %, précédent −2,0 % révisé)"
+  },
+  {
+   "h": "02:00",
+   "e": "Corée du Sud: décision de la Banque de Corée",
+   "i": 3,
+   "n": "Publié: hausse à 3,25 % (consensus 3,25 %, précédent 3,00 %), vote 5-2"
+  },
+  {
+   "h": "02:00",
+   "e": "Japon: discours de Naoki Tamura (BoJ)",
+   "i": 2,
+   "n": "Membre hawkish du conseil, avant la réunion des 17 et 18 décembre"
+  },
+  {
+   "h": "08:00",
+   "e": "Allemagne: confiance des consommateurs GfK (décembre)",
+   "i": 2,
+   "n": "Consensus −29, précédent −30,8"
+  },
+  {
+   "h": "13:30",
+   "e": "BCE: compte rendu de la réunion d'octobre",
+   "i": 2,
+   "n": "Ton attendu sur la hausse de décembre"
+  },
+  {
+   "h": "Jeudi 26/11",
+   "e": "États-Unis: Thanksgiving, marchés actions et obligataires fermés",
+   "i": 2,
+   "f": true,
+   "n": "Liquidité très réduite en Europe"
+  },
+  {
+   "h": "Vendredi 27/11",
+   "e": "États-Unis: séance raccourcie (Black Friday), actions jusqu'à 19:00, obligations jusqu'à 20:00 (heure de Paris)",
+   "i": 2,
+   "f": true,
+   "fb": "Séance raccourcie",
+   "n": "Recommandation SIFMA pour le marché obligataire"
+  }
+ ],
+ "agendaSrc": [
+  {
+   "t": "ActionForex – Eco Data 26/11",
+   "u": "https://www.actionforex.com/economic-calendar/661597-eco-data-11-26-26/"
+  },
+  {
+   "t": "investingLive – agenda Asie 26/11",
+   "u": "https://investinglive.com/central-banks/economic-and-event-calendar-in-asia-thursday-november-26-2026-bok-boj-turkey-later/"
+  },
+  {
+   "t": "The Library – FX Day Open 26/11",
+   "u": "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
+  }
+ ],
+ "archives": [
+  {
+   "d": "2026-11-26",
+   "l": "Jeu. 26 nov.",
+   "u": "2026-11-26.html"
+  },
+  {
+   "d": "2026-11-25",
+   "l": "Mer. 25 nov.",
+   "u": "2026-11-25.html"
+  },
+  {
+   "d": "2026-11-24",
+   "l": "Mar. 24 nov.",
+   "u": "2026-11-24.html"
+  }
+ ],
+ "consensusJour": "Pas de révision d'objectif aujourd'hui."
+}
+</script>
+<script>
+{
+const D=JSON.parse(document.getElementById('data').textContent);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const url=u=>/^https:\/\//.test(u)||/^[\w.-]+\.html$/.test(u)?esc(u):'#';
+const $=id=>document.getElementById(id);
+const IMP={3:'Haute',2:'Moyenne',1:'Faible'};
+const EFF={pos:'Positif',neg:'Négatif',mix:'Mitigé',neu:'Neutre'};
+const ARR={up:'▲',dn:'▼',fl:'►'};
+const CLS={up:'up',dn:'dn',fl:'fl'};
+D.items.forEach((it,i)=>it.id='i'+(i+1));
+$('ed').textContent=D.date;
+$('ttl').textContent=D.titre;
+$('ver').textContent=D.edition;
+$('bh').textContent=D.briefing.titre;
+$('pts').innerHTML=D.briefing.points.map(p=>`<li>${esc(p)}</li>`).join('');
+$('lect').innerHTML=D.briefing.lecture.map(l=>`<div><b>${esc(l.a)} · ${esc(l.b)}</b>${esc(l.t)}</div>`).join('');
+$('vig').innerHTML=`<b>Points de vigilance:</b> ${esc(D.briefing.vigilance)}`;
+$('tape').innerHTML=D.tape.map(t=>{const lv=t.v&&t.v!=='—';return `<div>${esc(t.n)}<div class="v ${lv?'':(CLS[t.d]||'fl')}">${lv?esc(t.v):(ARR[t.d]||'')+' '+esc(t.c)}</div>${lv?`<div class="c ${CLS[t.d]||'fl'}">${ARR[t.d]||''} ${esc(t.c)}</div>`:''}</div>`}).join('');
+$('tapen').innerHTML=esc(D.tapeNote)+'<br>'+D.tapeSrc.map(s=>`<a href="${url(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ');
+const cols=['pos','neg','mix','neu'];
+let mx='<div></div>'+cols.map(c=>`<div class="h eff ${c}">${EFF[c]}</div>`).join('');
+for(const lv of [3,2,1]){
+ mx+=`<div class="r">${IMP[lv]}</div>`;
+ for(const c of cols){
+  const its=D.items.filter(x=>x.imp===lv&&x.eff===c);
+  mx+=`<div class="cell ${c}">${its.map(x=>`<a class="dot ${c}" href="#${x.id}" title="${esc(x.t)}" aria-label="${esc(x.t)}">${x.id.slice(1)}</a>`).join('')}</div>`;
+ }
+}
+$('mx').innerHTML=mx;
+const ZON={eu:'Europe',us:'US',cn:'Chine',rdm:'Reste du monde'};
+const zs=x=>x.z&&x.z.length?x.z:['eu','us','cn','rdm'];
+const F={imp:new Set([3,2,1]),eff:new Set(cols),z:new Set(['eu','us','cn','rdm'])};
+const chips=(el,key,vals,lab)=>{el.insertAdjacentHTML('beforeend',vals.map(v=>`<button type="button" class="chip" id="f-${key}-${v}" aria-pressed="true" data-k="${key}" data-v="${v}">${lab[v]}</button>`).join(''))};
+chips($('fi'),'imp',[3,2,1],IMP);
+chips($('fe'),'eff',cols,EFF);
+chips($('fz'),'z',['eu','us','cn','rdm'],ZON);
+const card=x=>`<article class="it ${x.eff}" id="${x.id}">
+ <div class="meta"><span class="imp i${x.imp}">${IMP[x.imp]}</span><span class="eff ${x.eff}">${EFF[x.eff]}</span><span class="zone">${zs(x).map(z=>esc(ZON[z]||z)).join(' · ')}</span><span class="who">#${x.id.slice(1)} · ${esc(x.who)}</span></div>
+ <h3>${esc(x.t)}</h3><p>${esc(x.p)}</p>
+ ${x.as.length?`<div class="as">${x.as.map(a=>`<span class="${CLS[a[1]]}">${esc(a[0])} ${ARR[a[1]]}</span>`).join('')}</div>`:''}
+ <div class="src">Sources: ${x.s.map(s=>`<a href="${url(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join('')}</div>
+</article>`;
+const render=()=>{
+ $('secs').innerHTML=D.sections.map(s=>{
+  const its=D.items.filter(x=>x.cat===s.id&&F.imp.has(x.imp)&&F.eff.has(x.eff)&&zs(x).some(z=>F.z.has(z))).sort((a,b)=>b.imp-a.imp);
+  const tot=D.items.filter(x=>x.cat===s.id).length;
+  return `<section class="sec" aria-label="${esc(s.t)}"><h2>${esc(s.t)} <small>${its.length} / ${tot}</small></h2>${its.length?`<div class="items">${its.map(card).join('')}</div>`:'<p class="empty">Aucune info avec ces filtres.</p>'}</section>`;
+ }).join('');
+};
+document.querySelector('.bar').addEventListener('click',e=>{
+ const b=e.target.closest('.chip');if(!b)return;
+ const k=b.dataset.k,v=k==='imp'?+b.dataset.v:b.dataset.v;
+ if(F[k].has(v)){if(F[k].size>1)F[k].delete(v)}else F[k].add(v);
+ document.querySelectorAll(`.chip[data-k=${k}]`).forEach(c=>c.setAttribute('aria-pressed',F[k].has(k==='imp'?+c.dataset.v:c.dataset.v)));
+ render();
+});
+$('mx').addEventListener('click',e=>{
+ const a=e.target.closest('.dot');if(!a)return;
+ const x=D.items.find(i=>'#'+i.id===a.getAttribute('href'));
+ if(x&&(!F.imp.has(x.imp)||!F.eff.has(x.eff)||!zs(x).some(z=>F.z.has(z)))){F.imp=new Set([3,2,1]);F.eff=new Set(cols);F.z=new Set(['eu','us','cn','rdm']);document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','true'));render();}
+});
+render();
+$('ag').innerHTML=D.agenda.filter(a=>a.f||a.i>=2).map(a=>`<tr class="${a.f?'hol':'ag'+a.i}"><td class="t">${esc(a.h)}</td><td>${esc(a.e)}</td><td>${a.f?`<span class="holb">${esc(a.fb||'Férié / marché fermé')}</span>`:`<span class="imp i${a.i}">${IMP[a.i]}</span>`}</td><td>${esc(a.n)}</td></tr>`).join('');
+$('ft').innerHTML='Agenda: '+D.agendaSrc.map(s=>`<a href="${url(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`).join(' · ')+'<br>Couleur de bordure = impact sur l\'appétit pour le risque (actions européennes); badge bleu = importance. Les flèches indiquent le sens attendu du prix de chaque actif (▲ Bund = le prix monte, le rendement baisse). Synthèse rédigée à partir des sources citées; vérifiez les niveaux sur votre plateforme avant de traiter.';
+{
+ const drawA=list=>{const A=list.slice().sort((a,b)=>b.d.localeCompare(a.d));
+ $('archn').textContent=A.length+' édition'+(A.length>1?'s':'');
+ const recent=A.slice(0,30),old=A.slice(30);
+ $('arch').innerHTML=recent.map((a,i)=>`<a href="${url(a.u)}" target="_blank" rel="noopener" class="${i===0?'cur':''}">${esc(a.l)}</a>`).join('')+(old.length?`<details style="width:100%;margin-top:6px"><summary class="note" style="cursor:pointer">Éditions plus anciennes (${old.length})</summary><div class="arch">${old.map(a=>`<a href="${url(a.u)}" target="_blank" rel="noopener">${esc(a.d)}</a>`).join('')}</div></details>`:'');};
+ drawA(D.archives||[]);
+ fetch('editions.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(e=>{if(Array.isArray(e)&&e.length){const seen=new Set(e.map(x=>x.d));drawA(e.map(x=>({d:x.d,l:x.l,u:x.f})).concat((D.archives||[]).filter(a=>!seen.has(a.d))))}}).catch(()=>{});
+}
+{const t=document.getElementById('consjour');if(t)t.textContent=D.consensusJour||'';}
+$('cp').addEventListener('click',async()=>{
+ const b=D.briefing;
+ const txt=`BRIEFING ${D.date.toUpperCase()}\n${b.titre}\n\n`+b.points.map((p,i)=>`${i+1}. ${p}`).join('\n')+'\n\nLecture desk:\n'+b.lecture.map(l=>`- ${l.a}: ${l.b}. ${l.t}`).join('\n')+`\n\nVigilance: ${b.vigilance}`;
+ const btn=$('cp');
+ try{await navigator.clipboard.writeText(txt);btn.textContent='Copié ✓';btn.classList.add('ok')}catch(err){btn.textContent='Copie refusée par le navigateur'}
+ setTimeout(()=>{btn.textContent='Copier le briefing';btn.classList.remove('ok')},2200);
+});
+}
+</script>
+<script>{const b=document.getElementById('menuBtn'),p=document.getElementById('menuPanel');b.addEventListener('click',e=>{e.stopPropagation();const o=p.hidden;p.hidden=!o;b.setAttribute('aria-expanded',o)});document.addEventListener('click',e=>{if(!p.hidden&&!p.contains(e.target)){p.hidden=true;b.setAttribute('aria-expanded','false')}});document.addEventListener('keydown',e=>{if(e.key==='Escape'){p.hidden=true;b.setAttribute('aria-expanded','false')}})}</script>
+<script>{fetch('editions.json',{cache:'no-store'}).then(r=>r.json()).then(E=>{E.sort((a,b)=>b.d.localeCompare(a.d));const f=E[0]&&E[0].f;if(f&&/^[\w.-]+\.html$/.test(f))document.getElementById('mToday').href=f}).catch(()=>{})}</script>
+</body>
+</html>
