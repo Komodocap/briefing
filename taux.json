@@ -1,44 +1,44 @@
 {
- "maj": "25/11/2026",
- "asof": "lecture du marché au 23/11 · futures fed funds et €STR",
+ "maj": "26/11/2026",
+ "asof": "lecture du marché au 25/11 (Fed, CME FedWatch) et au 24/11 (BCE) · futures fed funds et €STR",
  "b": [
   {
    "b": "Fed",
    "r": "Fed funds 3,75–4,00 %",
    "m": "9 décembre 2026",
-   "h": 93.2,
-   "k": 6.8,
+   "h": 98,
+   "k": 2,
    "c": 0,
-   "v": "> 99 % mi-novembre",
-   "ir": "≈4,13 %",
+   "v": "93,2 % le 23/11",
+   "ir": "≈4,12 %",
    "path": [
     [
      "9 déc. 2026",
-     "93,2 %",
-     "4,13 %",
-     "+25"
+     "98 %",
+     "4,12 %",
+     "+24"
     ],
     [
      "27 janv. 2027",
-     "100 %",
-     "4,30 %",
-     "+42"
+     "99,4 %",
+     "4,29 %",
+     "+41"
     ],
     [
      "17 mars 2027",
-     "100 %",
+     "99,8 %",
      "4,44 %",
      "+56"
     ]
    ],
-   "tot": "≈56 pb de hausses intégrées sur 9 réunions (≈2,3 hausses). Centralbank.watch donne 100 % pour décembre. Le PCE du 25/11 peut déplacer la probabilité de décembre.",
+   "tot": "≈59 pb de hausses intégrées sur 9 réunions (≈2,3 hausses). Probabilité de décembre portée à ≈98 % après le PCE sous-jacent à 3,3 % et le PIB révisé à 4,3 %.",
    "s": [
     [
-     "CME FedWatch via ChainCatcher (23/11)",
-     "https://www.chaincatcher.com/en/article/2307162"
+     "CME FedWatch via Yahoo Finance (25/11)",
+     "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html"
     ],
     [
-     "Centralbank.watch, Fed (23/11)",
+     "Centralbank.watch, Fed (24/11)",
      "https://centralbank.watch/federal-reserve/"
     ]
    ]
@@ -47,40 +47,40 @@
    "b": "BCE",
    "r": "Taux de dépôt 2,50 %",
    "m": "17 décembre 2026",
-   "h": 87.8,
-   "k": 12.2,
+   "h": 90,
+   "k": 10,
    "c": 0,
-   "v": "70 % le 9/11, 47 % le 26/10",
+   "v": "87,8 % le 23/11, 70 % le 9/11",
    "ir": "≈2,72 %",
    "path": [
     [
      "17 déc. 2026",
-     "87,8 %",
+     "90 %",
      "2,72 %",
      "+22"
     ],
     [
      "4 févr. 2027",
-     "90,6 %",
+     "92 %",
      "2,78 %",
      "+28"
     ],
     [
      "18 mars 2027",
-     "95,8 %",
+     "96,4 %",
      "2,91 %",
      "+41"
     ]
    ],
-   "tot": "≈59 pb de hausses intégrées sur 9 réunions (≈2,4 hausses). Autre lecture (WatchTower, 23/11): 82 % de hausse en décembre.",
+   "tot": "≈57 pb de hausses intégrées sur 9 réunions (≈2,3 hausses). Sleijpen (BCE) confirme le scénario d'une hausse le 17 décembre.",
    "s": [
     [
-     "Centralbank.watch, BCE (23/11)",
+     "Centralbank.watch, BCE (24/11)",
      "https://centralbank.watch/european-central-bank/"
     ],
     [
-     "WatchTower Terminal, preview BCE (23/11)",
-     "https://watchtowerterminal.com/ecb-preview-december-2026/"
+     "The Library – FX Day Open 26/11",
+     "https://thelibraryestate.com/forex-day-open-briefing-dollar-softer-into-a-thin-thanksgiving-open-nov-26-2026/"
     ]
    ]
   }
